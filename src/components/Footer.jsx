@@ -11,7 +11,7 @@ function Footer() {
           <div className="footer__col">
             <Link to="/" className="footer__logo">
               <img src={logo} alt="Star Properties & Realty" className="footer__logo-img" />
-              <span>Groinnovative</span>
+              <span>Star Properties & Realty</span>
             </Link>
             <p className="footer__tagline">
               Your trusted partner in finding the perfect property. 
