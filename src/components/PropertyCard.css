@@ -1,0 +1,171 @@
+.property-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Grid Variant ---- */
+.property-card--grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.property-card--grid .property-card__image-wrap {
+  height: 220px;
+}
+
+/* ---- Horizontal Variant ---- */
+.property-card--horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.property-card--horizontal .property-card__image-wrap {
+  width: 40%;
+  min-height: 240px;
+  flex-shrink: 0;
+}
+
+.property-card--horizontal .property-card__body {
+  flex: 1;
+}
+
+/* ---- Image ---- */
+.property-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.property-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f0ede8;
+  transition: transform 0.4s ease;
+}
+
+.property-card:hover .property-card__image {
+  transform: scale(1.05);
+}
+
+/* ---- Badges ---- */
+.property-card__badge-sale {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.property-card__badge-status {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.property-card__badge-status--active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.property-card__badge-status--sold {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ---- Body ---- */
+.property-card__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.property-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--dark);
+}
+
+.property-card__price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.property-card__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.property-card__pin {
+  font-size: 0.9rem;
+}
+
+/* ---- Tags ---- */
+.property-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.property-card__tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--dark);
+}
+
+.property-card__tag--loan {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* ---- Actions ---- */
+.property-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.property-card__btn {
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .property-card--horizontal {
+    flex-direction: column;
+  }
+
+  .property-card--horizontal .property-card__image-wrap {
+    width: 100%;
+    height: 200px;
+  }
+}
