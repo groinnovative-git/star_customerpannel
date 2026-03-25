@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import {
-  teamArjun, teamSarah, teamMichael, teamPriya, teamDavid,
+  teamDavid,
   prop16, prop17, prop18, prop19
 } from '../assets/index';
+import cityscapeBg from '../assets/cityscape_night_bg.png';
+import teamArjun from '../assets/real_arjun.png';
+import teamSarah from '../assets/real_sarah.png';
+import teamMichael from '../assets/real_michael.png';
+import teamPriya from '../assets/real_priya.png';
 import { HiOutlineHomeModern, HiOutlineBuildingOffice2 } from 'react-icons/hi2';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import CTAStrip from '../components/CTAStrip';
@@ -67,26 +72,30 @@ function About() {
     <div className="about-page">
 
       {/* ── 1. HERO ─────────────────────────────────── */}
-<section className="about-hero">
+      <section className="about-hero">
 
-  <div className="about-hero__image-wrap">
-    <img src={prop16} alt="Modern house" className="about-hero__image" />
+        <div className="about-hero__image-wrap">
+          <img src={prop16} alt="Modern house" className="about-hero__image" />
 
-    {/* Gradient Overlay */}
-    <div className="about-hero__overlay"></div>
+          {/* Gradient Overlay */}
+          <div className="about-hero__overlay"></div>
 
-    {/* TEXT */}
-    <div className="about-hero__content">
-      <h1 className="about-hero__title">Star properties& reality</h1>
-      <p className="about-hero__tagline">
-        We connect people with the right properties through smart real estate
-        marketing and Our focus is building trust, value, and long-term
-        relationships with every client
-      </p>
-    </div>
-  </div>
+          {/* TEXT */}
+          <div className="about-hero__content">
+            <h1 className="about-hero__title">Star Properties &amp; Realty</h1>
+            <p className="about-hero__tagline">
+              We connect people with the right properties through smart real estate
+              marketing. Our focus is building trust, value, and long-term
+              relationships with every client.
+            </p>
+            {/* <div className="about-hero__actions">
+              <button className="btn-primary-hero">Contact Us</button>
+              <button className="btn-secondary-hero">Learn More</button>
+            </div> */}
+          </div>
+        </div>
 
-</section>
+      </section>
 
       {/* ── 2. ABOUT BODY ───────────────────────────── */}
       <section className="about-body">
@@ -120,7 +129,7 @@ function About() {
       <section
         className="about-values"
         style={{
-          backgroundImage: `linear-gradient(rgba(15,31,34,0.85), rgba(15,31,34,0.92)), url(${prop19})`,
+          backgroundImage: `linear-gradient(rgba(10,15,20,0.7), rgba(10,15,20,0.85)), url(${cityscapeBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
