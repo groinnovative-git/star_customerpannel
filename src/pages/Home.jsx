@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  FaHandshake, FaHome, FaBullhorn, FaKey, 
+import {
+  FaHandshake, FaHome, FaBullhorn, FaKey,
   FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn,
-  FaHandHoldingUsd, FaRegHandshake
+  FaHandHoldingUsd, FaRegHandshake,
+  FaChevronLeft, FaChevronRight
 } from 'react-icons/fa';
 import { FiMapPin, FiSearch } from 'react-icons/fi';
 import HeroSection from '../components/HeroSection';
@@ -15,51 +16,29 @@ import './Home.css';
 
 function Home() {
   const revealRefs = useRef([]);
-  const featuredCarouselRef = useRef(null);
-  const isDragging = useRef(false);
-  const dragStartX = useRef(0);
-  const dragScrollLeft = useRef(0);
-  const autoScrollRaf = useRef(null);
-  const touchStartX = useRef(0);
-  const touchScrollLeft = useRef(0);
 
-  // Mouse drag handlers
-  const onCarouselMouseDown = (e) => {
-    isDragging.current = true;
-    dragStartX.current = e.pageX;
-    dragScrollLeft.current = featuredCarouselRef.current.scrollLeft;
-    featuredCarouselRef.current.classList.add('is-dragging');
-  };
+  // Featured carousel — controlled slide state
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideConfig, setSlideConfig] = useState({ step: 310, perView: 4 });
 
-  const onCarouselMouseMove = (e) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const walk = (dragStartX.current - e.pageX) * 1.5;
-    featuredCarouselRef.current.scrollLeft = dragScrollLeft.current + walk;
-  };
+  useEffect(() => {
+    const measure = () => {
+      const w = window.innerWidth;
+      if (w >= 1280)      setSlideConfig({ step: 310, perView: 4 });
+      else if (w >= 1024) setSlideConfig({ step: 280, perView: 3 });
+      else if (w >= 640)  setSlideConfig({ step: 260, perView: 2 });
+      else                setSlideConfig({ step: 260, perView: 1 });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
-  const stopCarouselDrag = () => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    featuredCarouselRef.current?.classList.remove('is-dragging');
-  };
+  useEffect(() => { setSlideIndex(0); }, [slideConfig.perView]);
 
-  // Touch drag handlers (mobile)
-  const onTouchStart = (e) => {
-    isDragging.current = true;
-    touchStartX.current = e.touches[0].pageX;
-    touchScrollLeft.current = featuredCarouselRef.current.scrollLeft;
-  };
-
-  const onTouchMove = (e) => {
-    if (!isDragging.current) return;
-    const walk = (touchStartX.current - e.touches[0].pageX) * 1.5;
-    featuredCarouselRef.current.scrollLeft = touchScrollLeft.current + walk;
-  };
-
-  const onTouchEnd = () => {
-    isDragging.current = false;
-  };
+  const maxSlide = Math.max(0, properties.length - slideConfig.perView);
+  const slidePrev = () => setSlideIndex((i) => Math.max(0, i - 1));
+  const slideNext = () => setSlideIndex((i) => Math.min(maxSlide, i + 1));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,23 +75,6 @@ function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // Featured carousel: auto-scroll + seamless infinite loop
-  useEffect(() => {
-    const el = featuredCarouselRef.current;
-    if (!el) return;
-    const tick = () => {
-      if (!isDragging.current) {
-        el.scrollLeft += 1.5;
-        // When we've scrolled through the original set, reset seamlessly
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0;
-        }
-      }
-      autoScrollRaf.current = requestAnimationFrame(tick);
-    };
-    autoScrollRaf.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(autoScrollRaf.current);
-  }, []);
 
   const quickMoveItems = [
     { type: 'Apartment', subtitle: 'for sales', image: prop1 },
@@ -232,35 +194,47 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. Find the Right Buyer — Auto-scroll + Drag Carousel */}
+      {/* 4. Find the Right Buyer — Premium Controlled Carousel */}
       <section className="home-featured" id="featured-section" ref={addRevealRef}>
-        <div className="container home-featured__container">
-          <h2 className="home-section-heading">Find the Right Buyer Faster</h2>
-        </div>
-        <div
-          className="home-featured__carousel"
-          ref={featuredCarouselRef}
-          onMouseDown={onCarouselMouseDown}
-          onMouseMove={onCarouselMouseMove}
-          onMouseUp={stopCarouselDrag}
-          onMouseLeave={stopCarouselDrag}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-          <div className="home-featured__track">
-            {/* Original set */}
-            {properties.map((prop) => (
-              <div key={prop.id} className="home-featured__card-wrap">
-                <PropertyCard property={prop} variant="grid" />
-              </div>
-            ))}
-            {/* Duplicate set for seamless infinite loop */}
-            {properties.map((prop) => (
-              <div key={`dup-${prop.id}`} className="home-featured__card-wrap" aria-hidden="true">
-                <PropertyCard property={prop} variant="grid" />
-              </div>
-            ))}
+        <div className="container">
+          {/* Header row */}
+          <div className="home-featured__header">
+            <h2 className="home-section-heading">Find the Right Buyer Faster</h2>
+            <Link to="/services" className="home-featured__view-all">View All Properties</Link>
+          </div>
+
+          {/* Carousel viewport */}
+          <div className="home-featured__viewport">
+            <div
+              className="home-featured__track"
+              style={{ transform: `translateX(-${slideIndex * slideConfig.step}px)` }}
+            >
+              {properties.map((prop) => (
+                <div key={prop.id} className="home-featured__card-wrap">
+                  <PropertyCard property={prop} variant="grid" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation arrows */}
+          <div className="home-featured__nav">
+            <button
+              className="home-featured__nav-btn"
+              onClick={slidePrev}
+              disabled={slideIndex === 0}
+              aria-label="Previous properties"
+            >
+              <FaChevronLeft />
+            </button>
+<button
+              className="home-featured__nav-btn"
+              onClick={slideNext}
+              disabled={slideIndex >= maxSlide}
+              aria-label="Next properties"
+            >
+              <FaChevronRight />
+            </button>
           </div>
         </div>
       </section>
