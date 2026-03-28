@@ -18,7 +18,7 @@
 }
 
 .property-card--grid .property-card__image-wrap {
-  height: 220px;
+  height: 190px;
 }
 
 /* ---- Horizontal Variant ---- */
@@ -29,7 +29,7 @@
 
 .property-card--horizontal .property-card__image-wrap {
   width: 40%;
-  min-height: 240px;
+  min-height: 200px;
   flex-shrink: 0;
 }
 
@@ -46,7 +46,7 @@
 .property-card__image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   background: #f0ede8;
   transition: transform 0.4s ease;
 }
@@ -91,10 +91,10 @@
 
 /* ---- Body ---- */
 .property-card__body {
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .property-card__name {
@@ -125,8 +125,8 @@
 .property-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 5px;
+  margin-top: 6px;
 }
 
 .property-card__tag {
@@ -146,8 +146,8 @@
 /* ---- Actions ---- */
 .property-card__actions {
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .property-card__btn {

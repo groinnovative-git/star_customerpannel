@@ -1,0 +1,77 @@
+/* ========== FLOATING ACTION BUTTONS ========== */
+.floating-actions {
+  position: fixed;
+  bottom: 32px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+}
+
+.floating-actions__btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  text-decoration: none;
+}
+
+/* ---- WhatsApp ---- */
+.floating-actions__btn--whatsapp {
+  background: #1d4145;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(29, 65, 69, 0.45);
+}
+
+.floating-actions__btn--whatsapp:hover {
+  background: #25504a;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(29, 65, 69, 0.6);
+  color: #fff;
+}
+
+/* ---- Scroll to top ---- */
+.floating-actions__btn--top {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(232, 160, 32, 0.4);
+  opacity: 0;
+  transform: translateY(16px) scale(0.85);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.25s ease;
+}
+
+.floating-actions__btn--top.floating-actions__btn--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-actions__btn--top:hover {
+  background: #d4911a;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 32px rgba(232, 160, 32, 0.55);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .floating-actions {
+    bottom: 20px;
+    right: 16px;
+    gap: 10px;
+  }
+
+  .floating-actions__btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+}

@@ -10,11 +10,56 @@ import HeroSection from '../components/HeroSection';
 import PropertyCard from '../components/PropertyCard';
 import CTAStrip from '../components/CTAStrip';
 import properties from '../data/properties';
-import { promoBanner, sellBanner, prop1, prop2, prop3, prop4, prop5, prop13, prop14, prop15, prop20, prop21 } from '../assets/index';
+import { promoBanner, sellBanner, prop1, prop2, prop3, prop4, prop5, prop21 } from '../assets/index';
 import './Home.css';
 
 function Home() {
   const revealRefs = useRef([]);
+  const featuredCarouselRef = useRef(null);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const autoScrollRaf = useRef(null);
+  const touchStartX = useRef(0);
+  const touchScrollLeft = useRef(0);
+
+  // Mouse drag handlers
+  const onCarouselMouseDown = (e) => {
+    isDragging.current = true;
+    dragStartX.current = e.pageX;
+    dragScrollLeft.current = featuredCarouselRef.current.scrollLeft;
+    featuredCarouselRef.current.classList.add('is-dragging');
+  };
+
+  const onCarouselMouseMove = (e) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const walk = (dragStartX.current - e.pageX) * 1.5;
+    featuredCarouselRef.current.scrollLeft = dragScrollLeft.current + walk;
+  };
+
+  const stopCarouselDrag = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    featuredCarouselRef.current?.classList.remove('is-dragging');
+  };
+
+  // Touch drag handlers (mobile)
+  const onTouchStart = (e) => {
+    isDragging.current = true;
+    touchStartX.current = e.touches[0].pageX;
+    touchScrollLeft.current = featuredCarouselRef.current.scrollLeft;
+  };
+
+  const onTouchMove = (e) => {
+    if (!isDragging.current) return;
+    const walk = (touchStartX.current - e.touches[0].pageX) * 1.5;
+    featuredCarouselRef.current.scrollLeft = touchScrollLeft.current + walk;
+  };
+
+  const onTouchEnd = () => {
+    isDragging.current = false;
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,6 +96,24 @@ function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  // Featured carousel: auto-scroll + seamless infinite loop
+  useEffect(() => {
+    const el = featuredCarouselRef.current;
+    if (!el) return;
+    const tick = () => {
+      if (!isDragging.current) {
+        el.scrollLeft += 1.5;
+        // When we've scrolled through the original set, reset seamlessly
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      autoScrollRaf.current = requestAnimationFrame(tick);
+    };
+    autoScrollRaf.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(autoScrollRaf.current);
+  }, []);
+
   const quickMoveItems = [
     { type: 'Apartment', subtitle: 'for sales', image: prop1 },
     { type: 'Villa', subtitle: 'for sales', image: prop2 },
@@ -59,35 +122,15 @@ function Home() {
     { type: 'Farm Land', subtitle: 'for sales', image: prop5 }
   ];
 
-  const featuredItems = [
-    { ...properties[0], image: prop13 },
-    { ...properties[1], image: prop14 },
-    { ...properties[2], image: prop15 }
-  ];
+  // All properties used in the draggable featured carousel
 
-  const assistFeatures = [
-    { icon: <FaHandshake />, title: 'With Trusted Loan Support', position: 'top-left' },
-    { icon: <FaHome />, title: 'Find Your Ideal Property', position: 'top-right' },
-    { icon: <FaKey />, title: 'Seamless Buying & Leasing', position: 'bottom-left' },
-    { icon: <FaBullhorn />, title: 'Marketing and promotion for your properties', position: 'bottom-right' }
-  ];
-
-  const servicesCards = [
-    { 
-      title: 'Property Management', 
-      desc: 'Realty real estate specialise in property management, with services that cover all aspects of residential and commercial leasing.',
-      position: 'left'
-    },
-    { 
-      title: 'Rent a property', 
-      desc: 'Living in or using a property by paying money regularly to the owner instead of buying it',
-      position: 'center'
-    },
-    { 
-      title: 'Sell a property', 
-      desc: 'Transferring ownership of a property to another person in exchange for money',
-      position: 'right'
-    }
+  const serviceItems = [
+    { icon: <FaHome />, title: 'Find Your Ideal Property', desc: 'Browse premium listings in prime locations to find the home that matches your lifestyle and budget.' },
+    { icon: <FaRegHandshake />, title: 'Buy & Sell Property', desc: 'Expert guidance to get the best market value whether you are buying or selling a property.' },
+    { icon: <FaKey />, title: 'Rent & Lease', desc: 'Flexible rental and leasing solutions for residential and commercial properties.' },
+    { icon: <FaHandHoldingUsd />, title: 'Property Management', desc: 'Full-service management covering all aspects of residential and commercial leasing.' },
+    { icon: <FaHandshake />, title: 'Loan Support', desc: 'Trusted financing guidance to make your property purchase smooth and stress-free.' },
+    { icon: <FaBullhorn />, title: 'Marketing & Promotion', desc: 'Strategic marketing to reach the right buyers and maximise your property value.' },
   ];
 
   return (
@@ -189,90 +232,64 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. Find the Right Buyer — Restored for Clarity */}
+      {/* 4. Find the Right Buyer — Auto-scroll + Drag Carousel */}
       <section className="home-featured" id="featured-section" ref={addRevealRef}>
-        <div className="container">
+        <div className="container home-featured__container">
           <h2 className="home-section-heading">Find the Right Buyer Faster</h2>
-          <div className="home-featured__grid">
-            {featuredItems.map((prop) => (
-              <PropertyCard key={prop.id} property={prop} variant="grid" />
+        </div>
+        <div
+          className="home-featured__carousel"
+          ref={featuredCarouselRef}
+          onMouseDown={onCarouselMouseDown}
+          onMouseMove={onCarouselMouseMove}
+          onMouseUp={stopCarouselDrag}
+          onMouseLeave={stopCarouselDrag}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <div className="home-featured__track">
+            {/* Original set */}
+            {properties.map((prop) => (
+              <div key={prop.id} className="home-featured__card-wrap">
+                <PropertyCard property={prop} variant="grid" />
+              </div>
+            ))}
+            {/* Duplicate set for seamless infinite loop */}
+            {properties.map((prop) => (
+              <div key={`dup-${prop.id}`} className="home-featured__card-wrap" aria-hidden="true">
+                <PropertyCard property={prop} variant="grid" />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. How We Assist You — Circular Layout Redesign */}
-      <section className="home-assist" id="assist-section" ref={addRevealRef}>
+      {/* 5. How We Assist You — Combined Services Section */}
+      <section className="home-services-combined" id="services-combined-section" ref={addRevealRef}>
         <div className="container">
           <div
-            className="home-assist__bg-wrapper"
-            style={{ backgroundImage: `url(${prop20})` }}
-          >
-            <div className="home-assist__overlay"></div>
-            
-            <div className="home-assist__content-circular">
-              {/* Left Column */}
-              <div className="home-assist__side-column">
-                {assistFeatures.slice(0, 2).map((feature, idx) => (
-                  <div key={idx} className={`home-assist__feature-node home-assist__feature--${feature.position}`}>
-                    <div className="home-assist__node-icon">{feature.icon}</div>
-                    <h3 className="home-assist__node-title">{feature.title}</h3>
-                  </div>
-                ))}
-              </div>
-
-              {/* Center Column */}
-              <div className="home-assist__center-column">
-                <div className="home-assist__center-node">
-                  <div className="home-assist__globe-overlay">
-                    <svg viewBox="0 0 100 100" className="globe-svg">
-                      <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
-                      <path d="M50 5A45 45 0 0 1 50 95M50 5A45 45 0 0 0 50 95" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
-                      <path d="M5 50A45 45 0 0 1 95 50M5 50A45 45 0 0 0 95 50" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
-                      <ellipse cx="50" cy="50" rx="20" ry="45" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-                      <ellipse cx="50" cy="50" rx="45" ry="20" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-                    </svg>
-                  </div>
-                  <h2 className="home-assist__center-title">How We<br />Assist You</h2>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="home-assist__side-column">
-                {assistFeatures.slice(2, 4).map((feature, idx) => (
-                  <div key={idx} className={`home-assist__feature-node home-assist__feature--${feature.position}`}>
-                    <div className="home-assist__node-icon">{feature.icon}</div>
-                    <h3 className="home-assist__node-title">{feature.title}</h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Services & Team Section — Redesigned with Prop21 */}
-      <section className="home-services-new" id="services-cards-section" ref={addRevealRef}>
-        <div className="container">
-          <div
-            className="home-services__bg-wrapper-new"
+            className="home-svc-combined__wrapper"
             style={{ backgroundImage: `url(${prop21})` }}
           >
-            <div className="home-services__overlay-new"></div>
-            
-            <div className="home-services__content-new">
-              <div className="home-services__grid-new">
-                {servicesCards.map((card) => (
-                  <div key={card.title} className={`home-services__card-new home-services__card-new--${card.position}`}>
-                    <h3 className="home-services__card-title-new">{card.title}</h3>
-                    <p className="home-services__card-desc-new">{card.desc}</p>
+            <div className="home-svc-combined__overlay"></div>
+            <div className="home-svc-combined__inner">
+              {/* Left Panel */}
+              <div className="home-svc-combined__left">
+                <p className="home-svc-combined__eyebrow">What We Offer</p>
+                <h2 className="home-svc-combined__heading">How We<br />Assist You</h2>
+                <p className="home-svc-combined__desc">From finding your dream property to securing financing, our expert team guides you through every step of your real estate journey.</p>
+                <Link to="/about" className="home-svc-combined__btn">Meet our team</Link>
+              </div>
+              {/* Right Grid */}
+              <div className="home-svc-combined__grid">
+                {serviceItems.map((item) => (
+                  <div key={item.title} className="home-svc-combined__card">
+                    <div className="home-svc-combined__card-icon">{item.icon}</div>
+                    <h3 className="home-svc-combined__card-title">{item.title}</h3>
+                    <p className="home-svc-combined__card-desc">{item.desc}</p>
                   </div>
                 ))}
-              </div>
-
-              {/* Centered Button Below Middle Card */}
-              <div className="home-services__btn-wrap-new">
-                <Link to="/about" className="home-services__team-btn-new">Meet our team</Link>
               </div>
             </div>
           </div>
