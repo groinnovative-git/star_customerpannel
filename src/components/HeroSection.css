@@ -14,10 +14,11 @@
 }
 
 /* Dark overlay — no green tint */
+/* Luxury dark gradient overlay — ensuring premium text contrast */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(to bottom, rgba(15, 31, 34, 0.4), rgba(15, 31, 34, 0.65));
   z-index: 1;
 }
 
@@ -30,14 +31,16 @@
 /* ---- Heading ---- */
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  /* Bold Modern */
   color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 12px;
-  max-width: 680px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  max-width: 820px;
   margin-left: auto;
   margin-right: auto;
+  letter-spacing: -0.5px;
 }
 
 .hero__highlight {
@@ -45,10 +48,15 @@
 }
 
 .hero__subtitle {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 24px;
-  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 36px;
+  font-weight: 400;
+  /* Elegant */
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---- Category Icon Boxes ---- */
@@ -111,22 +119,37 @@
 }
 
 /* ---- Search Bar ---- */
+/* ---- Luxury Floating Search Card ---- */
+/* ---- Balanced Compact Search Row ---- */
 .hero__search {
   display: flex;
   align-items: center;
-  background: var(--white);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  /* Premium Glass Base */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* Balanced Outline */
+  border-radius: 50px;
+  /* Compact pill design */
   overflow: hidden;
-  max-width: 620px;
-  margin: 0 auto;
-  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15);
+  max-width: 820px; /* Increased width to provide more room for names */
+  margin: 32px auto 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hero__search:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .hero__search-field {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 18px;
+  padding: 12px 20px;
   flex: 1;
   min-width: 0;
 }
@@ -139,19 +162,21 @@
 
 .hero__search-divider {
   width: 1px;
-  height: 32px;
+  height: 24px;
+  /* Compact Divider */
   background: #e5e7eb;
   flex-shrink: 0;
 }
 
 .hero__search-input {
-  flex: 1;
+  flex: 1.6; /* Grow larger to show more text */
   border: none;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 1.05rem; /* Increased for better readability */
   color: var(--dark);
   background: transparent;
-  min-width: 0;
+  min-width: 120px; /* Minimum width for visibility */
+  padding-right: 12px;
 }
 
 .hero__search-input::placeholder {
@@ -159,35 +184,44 @@
 }
 
 .hero__search-select {
-  flex: 1;
+  flex: 1.2;
   border: none;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 1.05rem; /* Increased for better readability */
   color: var(--dark);
   background: transparent;
   cursor: pointer;
-  appearance: auto;
-  min-width: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-width: 100px;
 }
 
 .hero__search-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--gold);
   color: var(--white);
-  padding: 16px 24px;
+  padding: 12px 28px;
+  /* Compact Padding */
   border: none;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  /* Reduced font */
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  margin: 5px;
+  border-radius: 40px;
+  letter-spacing: 0.5px;
 }
 
 .hero__search-btn:hover {
   background: #d4911a;
+  box-shadow: 0 8px 20px rgba(232, 160, 32, 0.3);
+  transform: scale(1.02);
 }
 
 .hero__search-btn-icon {
@@ -249,24 +283,29 @@
 
   .hero__search {
     flex-direction: column;
-    border-radius: var(--radius);
+    border-radius: 24px;
     max-width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px;
   }
 
   .hero__search-field {
-    padding: 12px 16px;
+    padding: 14px 16px;
     width: 100%;
   }
 
   .hero__search-divider {
     width: 90%;
     height: 1px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.05);
   }
 
   .hero__search-btn {
-    padding: 14px;
+    padding: 15px;
     width: 100%;
     justify-content: center;
-    border-radius: 0 0 var(--radius) var(--radius);
+    border-radius: 12px;
+    margin: 10px 0 0;
   }
 }

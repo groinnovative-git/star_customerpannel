@@ -1,74 +1,205 @@
-/* ========== FILTER TABS ========== */
-.services-filter {
-  padding: 28px 0 16px;
+/* ========== PREMIUM STICKY FILTER ========== */
+.services-filter-sticky {
+  position: sticky;
+  top: 72px;
+  /* Offset for Navbar height */
+  z-index: 990;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(15, 31, 34, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
 }
 
 .services-filter__tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
   justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 10px;
+}
+
+.services-filter__tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .services-filter__tab {
-  padding: 10px 22px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 2px solid #e5e7eb;
-  border-radius: var(--radius-pill);
-  background: var(--white);
-  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid rgba(15, 31, 34, 0.08); /* Soft Border */
+  border-radius: 50px;
+  background: #e2e8f0; /* Soft Slate / Gray-Blue */
+  color: #475569; /* Muted contrast color */
   cursor: pointer;
-  transition: all var(--transition);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Soft Shadow */
+}
+
+.services-filter__tab-icon {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .services-filter__tab:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  transform: translateY(-3px) scale(1.05);
+  background: var(--white);
+  border-color: rgba(232, 160, 32, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .services-filter__tab--active {
   background: var(--primary);
-  border-color: var(--primary);
   color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 15px 30px rgba(29, 65, 69, 0.25);
 }
 
-/* ========== GRID ========== */
+.services-filter__tab--active .services-filter__tab-icon {
+  color: var(--gold);
+}
+
+.services-filter__tab--active:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
+/* ========== PREMIUM GRID SECTION ========== */
 .services-grid-section {
-  padding: 16px 0 56px;
+  padding: 60px 0 100px;
+  background: linear-gradient(to bottom, #fdfdfd, #f8f9fa);
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 COLUMNS ON DESKTOP */
   gap: 24px;
+  animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
+
+/* ========== PAGINATION ========== */
+.services-pagination {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(15, 31, 34, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.services-pagination__info {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 0.2px;
+}
+
+.services-pagination__next {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid rgba(29, 65, 69, 0.15);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.services-pagination__next:hover:not(:disabled) {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(29, 65, 69, 0.2);
+}
+
+.services-pagination__next--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Premium Card Overrides for Services Showcase - Now global in PropertyCard.css */
+/* Removed specific overrides to maintain uniform card sizing across the app */
 
 .services-empty {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: #9ca3af;
-  padding: 60px 0;
+  padding: 120px 0;
+  background: var(--white);
+  border-radius: 30px;
+  border: 2px dashed #eee;
+  margin: 40px 0;
+}
+
+/* Animations */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 COLUMNS ON TABLET */
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
+  .services-filter-sticky {
+    top: 64px;
+    /* Offset for Mobile Navbar height */
+    padding: 16px 0;
   }
 
   .services-filter__tabs {
-    gap: 8px;
+    justify-content: flex-start;
+    padding: 4px 16px;
+    margin: 0 -16px;
+    gap: 12px;
   }
 
   .services-filter__tab {
-    padding: 8px 16px;
-    font-size: 0.82rem;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* 1 COLUMN ON MOBILE */
+    max-width: 450px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .services-grid .property-card__image-wrap {
+    height: 220px;
   }
 }

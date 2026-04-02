@@ -40,6 +40,7 @@ import logo from './images/common/logo.jpeg';
 import mapPlaceholder from './images/common/map-placeholder.jpg';
 import prop20 from './images/common/prop20.png';
 import prop21 from './images/common/prop21.png';
+import prop0104 from './images/common/prop0104.png';
 
 export {
   heroBg,
@@ -52,5 +53,6 @@ export {
   logo,
   mapPlaceholder,
   prop20,
-  prop21
+  prop21,
+  prop0104
 };

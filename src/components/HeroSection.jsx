@@ -3,7 +3,7 @@ import { FaBuilding, FaHome, FaMapMarkedAlt } from 'react-icons/fa';
 import { MdVilla } from 'react-icons/md';
 import { GiFarmTractor } from 'react-icons/gi';
 import { BsFillBuildingFill } from 'react-icons/bs';
-import { FiSearch, FiMapPin } from 'react-icons/fi';
+import { FiSearch, FiMapPin, FiChevronDown } from 'react-icons/fi';
 import { heroBg } from '../assets/index';
 import './HeroSection.css';
 
@@ -85,20 +85,23 @@ function HeroSection({
             <div className="hero__search-divider"></div>
             <div className="hero__search-field">
               <FaHome className="hero__search-field-icon" />
-              <select
-                className="hero__search-select"
-                value={searchType}
-                onChange={(e) => setSearchType(e.target.value)}
-                id="hero-search-type"
-              >
-                <option value="">Property Type</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Villa">Villa</option>
-                <option value="Plot">Plot</option>
-                <option value="Farm Land">Farm Land</option>
-                <option value="Private House">Private House</option>
-                <option value="Commercial">Commercial</option>
-              </select>
+              <div className="hero__search-select-wrapper">
+                <select
+                  className="hero__search-select"
+                  value={searchType}
+                  onChange={(e) => setSearchType(e.target.value)}
+                  id="hero-search-type"
+                >
+                  <option value="">Property Type</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Plot">Plot</option>
+                  <option value="Farm Land">Farm Land</option>
+                  <option value="Private House">Private House</option>
+                  <option value="Commercial">Commercial</option>
+                </select>
+                <FiChevronDown className="hero__search-select-chevron" />
+              </div>
             </div>
             <button type="submit" className="hero__search-btn" id="hero-search-btn">
               <FiSearch className="hero__search-btn-icon" />
