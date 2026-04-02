@@ -71,7 +71,7 @@ function HeroSection({
 
         {showSearch && (
           <form className="hero__search" onSubmit={handleSearch}>
-            <div className="hero__search-field">
+            <div className="hero__search-field hero__search-field--location">
               <FiMapPin className="hero__search-field-icon" />
               <input
                 type="text"
@@ -83,7 +83,7 @@ function HeroSection({
               />
             </div>
             <div className="hero__search-divider"></div>
-            <div className="hero__search-field">
+            <div className="hero__search-field hero__search-field--type">
               <FaHome className="hero__search-field-icon" />
               <div className="hero__search-select-wrapper">
                 <select
