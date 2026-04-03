@@ -85,22 +85,25 @@ function HeroSection({
             <div className="hero__search-divider"></div>
             <div className="hero__search-field hero__search-field--type">
               <FaHome className="hero__search-field-icon" />
-              <div className="hero__search-select-wrapper">
-                <select
-                  className="hero__search-select"
-                  value={searchType}
-                  onChange={(e) => setSearchType(e.target.value)}
-                  id="hero-search-type"
-                >
-                  <option value="">Property Type</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Villa">Villa</option>
-                  <option value="Plot">Plot</option>
-                  <option value="Farm Land">Farm Land</option>
-                  <option value="Private House">Private House</option>
-                  <option value="Commercial">Commercial</option>
-                </select>
-                <FiChevronDown className="hero__search-select-chevron" />
+              <div className="hero__search-select-container">
+                <label className="hero__search-field-label">Property Type</label>
+                <div className="hero__search-select-wrapper">
+                  <select
+                    className="hero__search-select"
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                    id="hero-search-type"
+                  >
+                    <option value="">Select Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Plot">Plot</option>
+                    <option value="Farm Land">Farm Land</option>
+                    <option value="Private House">Private House</option>
+                    <option value="Commercial">Commercial</option>
+                  </select>
+                  <FiChevronDown className="hero__search-select-chevron" />
+                </div>
               </div>
             </div>
             <button type="submit" className="hero__search-btn" id="hero-search-btn">

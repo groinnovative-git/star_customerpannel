@@ -10,6 +10,13 @@ import prop9 from '../assets/images/properties/prop9.jpg';
 import prop10 from '../assets/images/properties/prop10.jpg';
 import prop11 from '../assets/images/properties/prop11.jpg';
 import prop12 from '../assets/images/properties/prop12.jpg';
+import prop13 from '../assets/images/properties/prop13.png';
+import prop14 from '../assets/images/properties/prop14.png';
+import prop15 from '../assets/images/properties/prop15.png';
+import prop16 from '../assets/images/properties/prop16.png';
+import prop17 from '../assets/images/properties/prop17.png';
+import prop18 from '../assets/images/properties/prop18.png';
+import prop19 from '../assets/images/properties/prop19.png';
 
 const properties = [
   {
@@ -20,11 +27,18 @@ const properties = [
     price: 4500000,
     priceLabel: '₹ 45,00,000',
     type: 'Apartment',
+    bhk: '2 BHK',
+    beds: 2,
+    baths: 2,
     area: '1,200 sqft',
     direction: 'East Facing',
+    furnishing: 'Semi-Furnished',
     status: 'Active',
     loanSupport: true,
-    image: prop1
+    image: prop1,
+    images: [prop1, prop13, prop14, prop15, prop16],
+    amenities: ['CCTV', 'Lift', 'Parking', 'Power Backup', 'Water Heater'],
+    description: 'This beautiful 2 BHK apartment in R.S. Puram offers modern living with great ventilation. Located in a prime area, it provides easy access to schools and markets.'
   },
   {
     id: 2,
@@ -34,11 +48,18 @@ const properties = [
     price: 8500000,
     priceLabel: '₹ 85,00,000',
     type: 'Villa',
+    bhk: '3 BHK',
+    beds: 3,
+    baths: 3,
     area: '2,400 sqft',
     direction: 'North Facing',
+    furnishing: 'Fully Furnished',
     status: 'Active',
     loanSupport: true,
-    image: prop2
+    image: prop2,
+    images: [prop2, prop17, prop18, prop19, prop1],
+    amenities: ['Garden', 'Swimming Pool', 'Gym', 'Security', 'Clubhouse'],
+    description: 'Luxury 3 BHK Villa in Saravanampatti with premium finishes and a private garden. Perfect for families looking for peace and luxury.'
   },
   {
     id: 3,
@@ -48,11 +69,18 @@ const properties = [
     price: 6200000,
     priceLabel: '₹ 62,00,000',
     type: 'Apartment',
+    bhk: '3 BHK',
+    beds: 3,
+    baths: 2,
     area: '1,450 sqft',
     direction: 'South Facing',
+    furnishing: 'Unfurnished',
     status: 'Sold Out',
     loanSupport: false,
-    image: prop3
+    image: prop3,
+    images: [prop3, prop2, prop4, prop5, prop6],
+    amenities: ['Play Area', 'Jogging Track', 'Intercom', 'Fire Safety', 'Rainwater Harvesting'],
+    description: 'Elegantly designed apartment in the prestigious Race Course area. Experience high-end urban living with world-class facilities.'
   },
   {
     id: 4,
@@ -62,11 +90,18 @@ const properties = [
     price: 3200000,
     priceLabel: '₹ 32,00,000',
     type: 'Plot',
+    bhk: 'N/A',
+    beds: 0,
+    baths: 0,
     area: '2,000 sqft',
     direction: 'West Facing',
+    furnishing: 'N/A',
     status: 'Active',
     loanSupport: true,
-    image: prop4
+    image: prop4,
+    images: [prop4, prop7, prop8, prop9, prop10],
+    amenities: ['Gated Community', 'Blacktop Road', 'Street Lights', 'Water Connection', 'Park'],
+    description: 'Prime residential plot in Singanallur, ideal for building your dream home in a well-developed gated community.'
   },
   {
     id: 5,
@@ -76,11 +111,18 @@ const properties = [
     price: 12000000,
     priceLabel: '₹ 1,20,00,000',
     type: 'Farm Land',
+    bhk: '1 BHK',
+    beds: 1,
+    baths: 1,
     area: '1 Acre',
     direction: 'East Facing',
+    furnishing: 'Semi-Furnished',
     status: 'Active',
     loanSupport: false,
-    image: prop5
+    image: prop5,
+    images: [prop5, prop11, prop12, prop1, prop2],
+    amenities: ['Fencing', 'Borewell', 'Fruit Trees', 'Small Cottage', 'Electricity'],
+    description: 'Beautiful 1-acre farm land with a small retreat cottage. Perfect for weekend getaways and organic farming.'
   },
   {
     id: 6,
@@ -90,11 +132,18 @@ const properties = [
     price: 7800000,
     priceLabel: '₹ 78,00,000',
     type: 'Private House',
+    bhk: '3 BHK',
+    beds: 3,
+    baths: 2,
     area: '1,800 sqft',
     direction: 'North Facing',
+    furnishing: 'Semi-Furnished',
     status: 'Active',
     loanSupport: true,
-    image: prop6
+    image: prop6,
+    images: [prop6, prop3, prop4, prop5, prop7],
+    amenities: ['Terrace Garden', 'Compound Wall', 'Modular Kitchen', 'Wardrobes', 'Sunshade'],
+    description: 'A spacious independent house in Peelamedu, combining traditional heritage looks with modern interior amenities.'
   },
   {
     id: 7,
@@ -104,11 +153,18 @@ const properties = [
     price: 15000000,
     priceLabel: '₹ 1,50,00,000',
     type: 'Commercial',
+    bhk: 'Office',
+    beds: 0,
+    baths: 2,
     area: '3,500 sqft',
     direction: 'East Facing',
+    furnishing: 'Unfurnished',
     status: 'Active',
     loanSupport: true,
-    image: prop7
+    image: prop7,
+    images: [prop7, prop8, prop9, prop10, prop11],
+    amenities: ['Lift', 'AC Provision', 'Fiber Internet', 'Security', 'Basement Parking'],
+    description: 'Premium commercial space in the heart of Gandhipuram. Ideal for corporate offices or retail showrooms with high visibility.'
   },
   {
     id: 8,
@@ -118,11 +174,18 @@ const properties = [
     price: 5500000,
     priceLabel: '₹ 55,00,000',
     type: 'Apartment',
+    bhk: '2 BHK',
+    beds: 2,
+    baths: 2,
     area: '1,350 sqft',
     direction: 'South Facing',
+    furnishing: 'Semi-Furnished',
     status: 'Active',
     loanSupport: true,
-    image: prop8
+    image: prop8,
+    images: [prop8, prop12, prop13, prop14, prop15],
+    amenities: ['Gym', 'Yoga Hall', 'Waste Management', 'Solar Lighting', 'ATM'],
+    description: 'Modern 2 BHK apartment on Avinashi Road. Great amenities and excellent connectivity to the airport and IT parks.'
   },
   {
     id: 9,
@@ -132,11 +195,18 @@ const properties = [
     price: 9500000,
     priceLabel: '₹ 95,00,000',
     type: 'Villa',
+    bhk: '4 BHK',
+    beds: 4,
+    baths: 4,
     area: '2,800 sqft',
     direction: 'West Facing',
+    furnishing: 'Fully Furnished',
     status: 'Sold Out',
     loanSupport: false,
-    image: prop9
+    image: prop9,
+    images: [prop9, prop16, prop17, prop18, prop19],
+    amenities: ['Private Pool', 'Home Theater', 'Smart Home System', 'Servant Room', 'Landscape Garden'],
+    description: 'Exquisite 4 BHK Villa with ultra-modern features. Emerald Bay offers the pinnacle of luxury living in Thudiyalur.'
   },
   {
     id: 10,
@@ -146,11 +216,18 @@ const properties = [
     price: 8000000,
     priceLabel: '₹ 80,00,000',
     type: 'Farm Land',
+    bhk: 'N/A',
+    beds: 0,
+    baths: 0,
     area: '2 Acres',
     direction: 'North Facing',
+    furnishing: 'N/A',
     status: 'Active',
     loanSupport: false,
-    image: prop10
+    image: prop10,
+    images: [prop10, prop1, prop2, prop3, prop4],
+    amenities: ['Well Water', 'Drip Irrigation', 'Store House', 'Road Access', 'Clear Title'],
+    description: 'Huge 2-acre farm land on Mettupalayam Road. Fertile soil and excellent water source make it ideal for agriculture or investment.'
   },
   {
     id: 11,
@@ -160,11 +237,18 @@ const properties = [
     price: 2800000,
     priceLabel: '₹ 28,00,000',
     type: 'Plot',
+    bhk: 'N/A',
+    beds: 0,
+    baths: 0,
     area: '1,500 sqft',
     direction: 'East Facing',
+    furnishing: 'N/A',
     status: 'Active',
     loanSupport: true,
-    image: prop11
+    image: prop11,
+    images: [prop11, prop5, prop6, prop7, prop8],
+    amenities: ['DTCP Approved', 'Corner Plot', 'Avenue Trees', 'Childrens Park', 'Walking Track'],
+    description: 'A premium corner plot in a fast-developing neighborhood in Vadavalli. Perfect for your future home.'
   },
   {
     id: 12,
@@ -174,12 +258,20 @@ const properties = [
     price: 6800000,
     priceLabel: '₹ 68,00,000',
     type: 'Private House',
+    bhk: '3 BHK',
+    beds: 3,
+    baths: 3,
     area: '2,100 sqft',
     direction: 'South Facing',
+    furnishing: 'Fully Furnished',
     status: 'Sold Out',
     loanSupport: true,
-    image: prop12
+    image: prop12,
+    images: [prop12, prop9, prop10, prop11, prop13],
+    amenities: ['Car Parking', 'Rain Water Tank', 'Utility Area', 'UPS Backup', 'Sensor Lights'],
+    description: 'A cozy and fully furnished family home in Kovaipudur. Quiet environment and modern interiors.'
   }
 ];
 
 export default properties;
+

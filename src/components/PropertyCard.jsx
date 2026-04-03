@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaBuilding, FaHome, FaMapMarkedAlt } from 'react-icons/fa';
-import { MdVilla } from 'react-icons/md';
+import { MdVilla, MdSquareFoot, MdExplore } from 'react-icons/md';
 import { GiFarmTractor } from 'react-icons/gi';
 import { BsFillBuildingFill } from 'react-icons/bs';
+import { RiBankLine } from 'react-icons/ri';
 import './PropertyCard.css';
 
 function PropertyCard({ property, variant = 'grid', isServicesPage = false }) {
@@ -28,30 +29,40 @@ function PropertyCard({ property, variant = 'grid', isServicesPage = false }) {
           <span className="property-card__badge-type-icon">{typeIcons[property.type] || <FaHome />}</span>
           <span className="property-card__badge-type-text">{property.type}</span>
         </div>
-
-        {!isServicesPage && (
-          <span className={`property-card__badge-status ${property.status === 'Active' ? 'property-card__badge-status--active' : 'property-card__badge-status--sold'}`}>
-            {property.status === 'Active' ? '● ACTIVE' : '● SOLD OUT'}
-          </span>
-        )}
       </div>
 
       <div className="property-card__body">
         <h3 className="property-card__name">{property.name}</h3>
-        <p className="property-card__price">{property.priceLabel}</p>
         <p className="property-card__location">
           <FaMapMarkerAlt className="property-card__location-icon" />
           {property.location}, {property.city}
         </p>
 
-        <div className="property-card__tags">
-          <span className="property-card__tag">{property.area}</span>
-          <span className="property-card__tag">{property.direction}</span>
-          {property.loanSupport && <span className="property-card__tag property-card__tag--loan">Loan Support</span>}
+        <p className="property-card__price">{property.priceLabel}</p>
+
+        <div className="property-card__details-row">
+          <span className="property-card__detail-item">
+            <MdSquareFoot className="property-card__detail-icon" />
+            {property.area}
+          </span>
+          <span className="property-card__detail-divider">|</span>
+          <span className="property-card__detail-item">
+            <MdExplore className="property-card__detail-icon" />
+            {property.direction}
+          </span>
+          {property.loanSupport && (
+            <>
+              <span className="property-card__detail-divider">|</span>
+              <span className="property-card__detail-item property-card__detail-item--loan">
+                <RiBankLine className="property-card__detail-icon" />
+                Loan
+              </span>
+            </>
+          )}
         </div>
 
         <div className="property-card__actions">
-          <Link to="/services/details" className="btn-outline property-card__btn">Details</Link>
+          <Link to={`/services/details/${property.id}`} className="btn-outline property-card__btn">Details</Link>
           <Link to="/contact" className="btn-teal property-card__btn">Contact</Link>
         </div>
       </div>

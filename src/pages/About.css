@@ -11,7 +11,7 @@
 .about-page__container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 24px;
 }
 
 /* ── EYEBROW ─────────────────────────────────────────── */
@@ -36,7 +36,7 @@
 .about-team__header,
 .about-evolution__header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 /* .btn-gold is defined globally in index.css — no override needed here */
@@ -46,7 +46,7 @@
    ======================================================== */
 .about-hero {
   position: relative;
-  min-height: 58vh;
+  min-height: 44vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -69,8 +69,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 56px 28px 44px;
+  gap: 12px;
+  padding: 36px 28px 32px;
   max-width: 680px;
   width: 100%;
 }
@@ -97,7 +97,7 @@
    2. ABOUT BODY
    ======================================================== */
 .about-body {
-  padding: 56px 0;
+  padding: 36px 0;
   background: #fff;
 }
 
@@ -113,8 +113,16 @@
 .about-body__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 52px;
+  gap: 32px;
   align-items: center;
+}
+
+.about-body__content {
+  order: 1;
+}
+
+.about-body__images {
+  order: 2;
 }
 
 .about-body__content {
@@ -125,10 +133,12 @@
 }
 
 .about-body__text {
-  font-size: 0.93rem;
+  font-size: 16px;
   color: #4b5563;
-  line-height: 1.75;
+  line-height: 1.8;
   margin: 0;
+  text-align: justify;
+  font-weight: 400;
 }
 
 /* Stacked images */
@@ -166,7 +176,7 @@
    3. VALUES
    ======================================================== */
 .about-values {
-  padding: 56px 0;
+  padding: 36px 0;
 }
 
 .about-values__header {
@@ -256,7 +266,7 @@
    4. WHY
    ======================================================== */
 .about-why {
-  padding: 56px 0;
+  padding: 36px 0;
   background: var(--bg);
 }
 
@@ -364,7 +374,7 @@
    5. LEADERSHIP
    ======================================================== */
 .about-team {
-  padding: 56px 0;
+  padding: 36px 0;
   background: #fff;
 }
 
@@ -485,11 +495,78 @@
   margin: 0;
 }
 
+/* ── MANAGER CARDS ──────────────────────────────────── */
+.about-managers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.about-manager-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  border: 1px solid rgba(29, 65, 69, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-manager-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+.about-manager-card__avatar-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+}
+
+.about-manager-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-manager-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0;
+}
+
+.about-manager-card__role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.about-manager-card__desc {
+  font-size: 0.82rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* ========================================================
    6. EVOLUTION
    ======================================================== */
 .about-evolution {
-  padding: 56px 0;
+  padding: 36px 0;
   background: var(--bg);
 }
 
@@ -635,7 +712,7 @@
    ======================================================== */
 .about-stats {
   background: var(--bg);
-  padding: 44px 0 52px;
+  padding: 28px 0 36px;
 }
 
 .about-stats__grid {
@@ -686,17 +763,9 @@
   display: none;
 }
 
-/* ========================================================
-   RESPONSIVE
-   ======================================================== */
+/* ========== RESPONSIVE OVERHAUL ========== */
 
-@media (max-width: 1200px) {
-  .about-why__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .about-page__container {
     padding: 0 24px;
   }
@@ -707,41 +776,50 @@
 
   .about-body__grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
+  }
+
+  .about-body__content {
+    order: 2; /* Text below image */
   }
 
   .about-body__images {
-    height: 300px;
+    order: 1; /* Image top */
+    height: 320px;
   }
 
   .about-values__grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
     margin: 0 auto;
   }
 
-  .about-values__card:nth-child(1),
-  .about-values__card:nth-child(3) {
+  .about-values__card:nth-child(n) {
     margin-top: 0;
   }
 
-  .about-values__card--featured {
-    order: -1;
+  .about-why__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .about-evolution__track {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 24px;
+  .about-ceo {
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .about-evolution__connector {
-    display: none;
+  .about-ceo__img-col {
+    flex: 0 0 300px;
   }
 
-  .about-evolution__item {
-    flex: none;
+  .about-ceo__info {
+    border-left: none;
+    border-top: 4px solid var(--gold);
+    padding: 32px;
+  }
+
+  .about-managers__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -755,30 +833,21 @@
     gap: 14px;
   }
 
+  .about-body__title {
+    font-size: 1.6rem;
+  }
+
   .about-why__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .about-ceo {
-    flex-direction: column;
-    max-width: 100%;
-  }
-
-  .about-ceo__img-col {
-    flex: none;
-    height: 260px;
-    width: 100%;
-  }
-
-  .about-ceo__info {
-    border-left: none;
-    border-top: 4px solid var(--gold);
-    padding: 24px 22px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .about-evolution__track {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about-evolution__connector {
+    display: none;
   }
 
   .about-stats__grid {
@@ -787,21 +856,46 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 576px) {
+  .about-hero {
+    min-height: 220px;
+  }
+
+  .about-hero__inner {
+    padding: 24px 16px;
+  }
+
   .about-hero__title {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
+  }
+
+  .about-body__images {
+    height: 260px;
+  }
+
+  .about-values__grid {
+    grid-template-columns: 1fr;
   }
 
   .about-why__grid {
     grid-template-columns: 1fr;
   }
 
-  .about-body__img--1,
-  .about-body__img--2 {
-    width: 80%;
+  .about-ceo__img-col {
+    flex: 0 0 240px;
   }
 
   .about-ceo__name {
+    font-size: 1.5rem;
+  }
+
+  .about-managers__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-stats__num {
     font-size: 1.5rem;
   }
 }

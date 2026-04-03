@@ -34,6 +34,9 @@ import teamSarah from './images/team/sarah.jpg';
 import teamMichael from './images/team/michael.jpg';
 import teamPriya from './images/team/priya.jpg';
 import teamDavid from './images/team/david.jpg';
+import teamVijay from './images/team/vijay.png';
+import teamSujitha from './images/team/sujitha.png';
+import teamRamesh from './images/team/ramesh.png';
 
 /* Common */
 import logo from './images/common/logo.jpeg';
@@ -50,6 +53,7 @@ export {
   prop16, prop17, prop18, prop19,
   promoBanner, sellBanner,
   teamArjun, teamSarah, teamMichael, teamPriya, teamDavid,
+  teamVijay, teamSujitha, teamRamesh,
   logo,
   mapPlaceholder,
   prop20,

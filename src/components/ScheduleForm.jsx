@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ScheduleForm.css';
 
-function ScheduleForm() {
+function ScheduleForm({ propertyName }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,8 +16,8 @@ function ScheduleForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Schedule Visit Form Data:', formData);
-    alert('Visit scheduled successfully! We will contact you shortly.');
+    console.log('Schedule Visit Form Data:', { ...formData, propertyName });
+    alert(`Visit scheduled for ${propertyName} successfully! We will contact you shortly.`);
     setFormData({ name: '', email: '', phone: '', date: '', message: '' });
   };
 
@@ -26,10 +26,14 @@ function ScheduleForm() {
       <h3 className="schedule-form__title">Schedule a Visit</h3>
       <form onSubmit={handleSubmit}>
         <div className="schedule-form__group">
+          <p className="schedule-form__property-name">{propertyName || 'Property'}</p>
+        </div>
+        <div className="schedule-form__group">
+          <label className="schedule-form__label">Your Name</label>
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder="John Doe"
             className="schedule-form__input"
             value={formData.name}
             onChange={handleChange}
@@ -38,10 +42,11 @@ function ScheduleForm() {
           />
         </div>
         <div className="schedule-form__group">
+          <label className="schedule-form__label">Email Address</label>
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="john@example.com"
             className="schedule-form__input"
             value={formData.email}
             onChange={handleChange}
@@ -50,10 +55,11 @@ function ScheduleForm() {
           />
         </div>
         <div className="schedule-form__group">
+          <label className="schedule-form__label">Phone Number</label>
           <input
             type="tel"
             name="phone"
-            placeholder="Phone Number"
+            placeholder="+91 98765 43210"
             className="schedule-form__input"
             value={formData.phone}
             onChange={handleChange}
@@ -62,6 +68,7 @@ function ScheduleForm() {
           />
         </div>
         <div className="schedule-form__group">
+          <label className="schedule-form__label">Preferred Date</label>
           <input
             type="date"
             name="date"
@@ -73,11 +80,12 @@ function ScheduleForm() {
           />
         </div>
         <div className="schedule-form__group">
+          <label className="schedule-form__label">Message</label>
           <textarea
             name="message"
-            placeholder="Message (optional)"
+            placeholder="I'm interested in viewing this..."
             className="schedule-form__textarea"
-            rows="4"
+            rows="3"
             value={formData.message}
             onChange={handleChange}
             id="schedule-message"

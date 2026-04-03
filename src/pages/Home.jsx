@@ -4,9 +4,11 @@ import {
   FaHandshake, FaHome, FaBullhorn, FaKey,
   FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn,
   FaHandHoldingUsd, FaRegHandshake,
-  FaChevronLeft, FaChevronRight
+  FaChevronLeft, FaChevronRight,
+  FaStar, FaQuoteLeft
 } from 'react-icons/fa';
 import { FiMapPin, FiSearch } from 'react-icons/fi';
+import { MdSquareFoot, MdExplore, MdAccountBalance } from 'react-icons/md';
 import HeroSection from '../components/HeroSection';
 import PropertyCard from '../components/PropertyCard';
 import CTAStrip from '../components/CTAStrip';
@@ -95,6 +97,51 @@ function Home() {
     { icon: <FaBullhorn />, title: 'Marketing & Promotion', desc: 'Strategic marketing to reach the right buyers and maximise your property value.' },
   ];
 
+  const reviewItems = [
+    {
+      name: 'Selvakumar',
+      location: 'Coimbatore',
+      review: 'Excellent service and transparent dealings. The team made my property buying experience smooth and hassle-free. Highly recommended!',
+      rating: 5,
+      initials: 'S'
+    },
+    {
+      name: 'Priya',
+      location: 'R.S. Puram',
+      review: 'Best support from start to registration. They guided us through every step with clear communication and genuine care.',
+      rating: 5,
+      initials: 'P'
+    },
+    {
+      name: 'Arjun',
+      location: 'Peelamedu',
+      review: 'Professional team and premium properties. Star Properties helped me find the perfect investment property with great returns.',
+      rating: 5,
+      initials: 'A'
+    },
+    {
+      name: 'Karthik',
+      location: 'Gandhipuram',
+      review: 'Very reliable and trustworthy. They helped me sell my property at the best market price within weeks.',
+      rating: 5,
+      initials: 'K'
+    },
+    {
+      name: 'Meena',
+      location: 'Saravanampatti',
+      review: 'Amazing property options and friendly team. They understood exactly what I needed and delivered beyond expectations.',
+      rating: 5,
+      initials: 'M'
+    },
+    {
+      name: 'Rahul',
+      location: 'Avinashi Road',
+      review: 'Smooth loan assistance and complete documentation support. A one-stop solution for all real estate needs.',
+      rating: 5,
+      initials: 'R'
+    }
+  ];
+
   return (
     <div className="home-page">
       {/* 1. Hero */}
@@ -104,6 +151,8 @@ function Home() {
         showSearch={true}
         showCategories={true}
       />
+
+
 
       {/* 2. QuickMove Properties */}
       <section className="home-quickmove" id="quickmove-section" ref={addRevealRef}>
@@ -146,21 +195,21 @@ function Home() {
           <div className="home-promo__slider">
             {[
               {
-                //  heading: <>NEW HOUSE<br />FOR <span className="home-promo__cyan">RENTAL</span></>,
-                  //discount: 'UP TO 30% DISCOUNT',
-               // desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                heading: <>NEW HOUSE<br />FOR <span className="home-promo__cyan">RENTAL</span></>,
+                discount: 'UP TO 30% DISCOUNT',
+                desc: 'Premium rental homes in top locations across Coimbatore.',
                 image: promoBanner
               },
               {
                 heading: <>DREAM HOME<br />FOR <span className="home-promo__cyan">SALE</span></>,
                 discount: 'BEST PRICE GUARANTEED',
-                desc: 'Find your perfect home with our expert guidance. Premium properties in prime locations across Coimbatore.',
+                desc: 'Find your perfect home with our expert guidance.',
                 image: sellBanner
               },
               {
                 heading: <>LUXURY VILLA<br />FOR <span className="home-promo__cyan">INVESTMENT</span></>,
                 discount: 'HIGH ROI PROPERTIES',
-                //  desc: 'Invest in premium real estate with guaranteed returns. Trusted by over 1,200 happy families.',
+                desc: 'Invest in premium real estate with guaranteed returns.',
                 image: promoBanner
               }
             ].map((slide, index) => index === bannerSlide && (
@@ -168,7 +217,6 @@ function Home() {
                 key={index}
                 className="home-promo__banner home-promo__banner--active"
               >
-                {/* Full Width Image Banner */}
                 <div className="home-promo__right">
                   <img
                     src={slide.image}
@@ -291,7 +339,62 @@ function Home() {
         </div>
       </section>
 
-      {/* 9. CTA Strip */}
+      {/* 9. Customer Reviews */}
+      <section className="home-reviews" id="reviews-section">
+        <div className="container">
+          <div className="home-reviews__header">
+            <span className="home-reviews__eyebrow">Customer Reviews</span>
+            <h2 className="home-section-heading">What Our Clients Say</h2>
+          </div>
+        </div>
+        <div className="home-reviews__carousel">
+          <div className="home-reviews__track">
+            {reviewItems.map((item) => (
+              <div key={item.name} className="home-reviews__card">
+                <div className="home-reviews__quote-icon">
+                  <FaQuoteLeft />
+                </div>
+                <div className="home-reviews__stars">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <FaStar key={i} className="home-reviews__star" />
+                  ))}
+                </div>
+                <p className="home-reviews__text">"{item.review}"</p>
+                <div className="home-reviews__author">
+                  <div className="home-reviews__avatar">{item.initials}</div>
+                  <div className="home-reviews__author-info">
+                    <span className="home-reviews__name">{item.name}</span>
+                    <span className="home-reviews__location">{item.location}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* Duplicate for seamless loop */}
+            {reviewItems.map((item) => (
+              <div key={`dup-${item.name}`} className="home-reviews__card" aria-hidden="true">
+                <div className="home-reviews__quote-icon">
+                  <FaQuoteLeft />
+                </div>
+                <div className="home-reviews__stars">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <FaStar key={i} className="home-reviews__star" />
+                  ))}
+                </div>
+                <p className="home-reviews__text">"{item.review}"</p>
+                <div className="home-reviews__author">
+                  <div className="home-reviews__avatar">{item.initials}</div>
+                  <div className="home-reviews__author-info">
+                    <span className="home-reviews__name">{item.name}</span>
+                    <span className="home-reviews__location">{item.location}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. CTA Strip */}
       <CTAStrip />
     </div>
   );

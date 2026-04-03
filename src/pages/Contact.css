@@ -1,20 +1,20 @@
 /* ========== CONTACT HERO ========== */
 .contact-hero {
-  min-height: 300px;
+  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-size: cover;
   background-position: center;
   text-align: center;
-  padding: 44px 24px;
+  padding: 32px 24px;
 }
 
 .contact-hero__title {
   font-family: var(--font-heading);
-  font-size: 2.75rem;
+  font-size: 2.2rem;
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   line-height: 1.2;
 }
 
@@ -30,20 +30,20 @@
 
 /* ========== TWO-COLUMN FORM SECTION ========== */
 .contact-form-section {
-  padding: 56px 0;
+  padding: 32px 0;
 }
 
 .contact-form-section__inner {
   display: flex;
   align-items: stretch;
-  gap: 40px;
+  gap: 24px;
 }
 
 .contact-form-section__image-wrap {
   flex: 1;
-  border-radius: var(--radius);
+  border-radius: 14px;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 320px;
 }
 
 .contact-form-section__image {
@@ -56,32 +56,32 @@
 .contact-form-card {
   flex: 1;
   background: var(--white);
-  border-radius: var(--radius);
-  padding: 28px;
-  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
 }
 
 .contact-form-card__title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--dark);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .contact-form-card__group {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .contact-form-card__input,
 .contact-form-card__select,
 .contact-form-card__textarea {
   width: 100%;
-  padding: 14px 16px;
-  font-size: 0.95rem;
+  padding: 12px 14px;
+  font-size: 0.9rem;
   color: var(--dark);
   background: var(--bg);
   border: 2px solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   transition: border-color var(--transition);
 }
 
@@ -118,14 +118,14 @@
 
 /* ========== CONTACT INFO SECTION ========== */
 .contact-info {
-  padding: 56px 0;
+  padding: 32px 0;
   background: var(--bg);
 }
 
 .contact-info__inner {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
 }
 
 .contact-info__left {
@@ -134,15 +134,15 @@
 
 .contact-info__title {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: var(--dark);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .contact-info__subtitle {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: #6b7280;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   line-height: 1.6;
 }
 
@@ -172,8 +172,8 @@
 
 .contact-info__map-card {
   background: var(--dark);
-  border-radius: var(--radius);
-  padding: 44px 32px;
+  border-radius: 14px;
+  padding: 32px 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -225,32 +225,75 @@
   z-index: 1;
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 1024px) {
+/* ========== RESPONSIVE OVERHAUL ========== */
+@media (max-width: 992px) {
+  .contact-hero__title {
+    font-size: 1.8rem;
+  }
+
   .contact-form-section__inner {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Form top, Image below */
+    gap: 32px;
   }
 
   .contact-form-section__image-wrap {
-    min-height: 300px;
+    min-height: 260px;
   }
 
   .contact-info__inner {
     flex-direction: column;
+    gap: 32px;
   }
 
   .contact-info__right {
-    flex: auto;
     width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+  .contact-hero {
+    min-height: 200px;
+    padding: 24px 16px;
+  }
+
   .contact-hero__title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+
+  .contact-hero__subtitle {
+    font-size: 0.9rem;
   }
 
   .contact-form-card {
-    padding: 24px;
+    padding: 24px 16px;
+  }
+
+  .contact-info__title {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .contact-info__subtitle {
+    text-align: center;
+  }
+
+  .contact-info__list {
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-hero {
+    min-height: 180px;
+  }
+
+  .contact-form-card__title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .contact-form-card__btn {
+    padding: 12px;
+    font-size: 0.95rem;
   }
 }

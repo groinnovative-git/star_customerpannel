@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { prop16, prop17, prop18 } from '../assets/index';
+import { prop16, prop17, prop18, teamArjun, teamVijay, teamSujitha, teamRamesh } from '../assets/index';
 import cityscapeBg from '../assets/cityscape_night_bg.png';
-import teamArjun from '../assets/real_arjun.png';
 import {
   HiOutlineGlobeAlt,
   HiOutlineRocketLaunch,
@@ -98,18 +97,13 @@ function About() {
           <div className="about-body__grid">
             <div className="about-body__content">
               <p className="about-body__text">
-                Welcome to Star Properties &amp; Realty, your trusted partner for
-                comprehensive real estate services, property management, liaisoning, and
-                specialized expertise in industrial properties and farm lands in Coimbatore.
-                With a focus on property sales, commercial leasing, residential
-                developments, and end-to-end management solutions, we are dedicated to
-                meeting the diverse needs of property buyers, sellers, and investors.
+                Welcome to Star Properties &amp; Realty, your trusted partner for comprehensive real estate services, property management, liaisoning, and specialized expertise in industrial properties and farm lands in Coimbatore.
               </p>
               <p className="about-body__text">
-                Whether you're looking for DTCP-approved plots, luxurious villas,
-                commercial spaces, industrial properties, or farm lands, Star Properties &amp; Realty
-                offers professional services built on transparency, integrity, and genuine
-                customer satisfaction.
+                With a focus on property sales, commercial leasing, residential developments, and end-to-end management solutions, we are dedicated to meeting the diverse needs of property buyers, sellers, and investors.
+              </p>
+              <p className="about-body__text">
+                Whether you're looking for DTCP-approved plots, luxurious villas, commercial spaces, industrial properties, or farm lands, Star Properties &amp; Realty offers professional services built on transparency, integrity, and genuine customer satisfaction.
               </p>
               <Link to="/contact" className="btn-gold">Get in Touch</Link>
             </div>
@@ -228,6 +222,34 @@ function About() {
                 "Real estate is not just about properties — it is about helping people make the most
                 important financial decisions of their lives with confidence and clarity."
               </blockquote>
+            </div>
+          </div>
+
+          {/* Manager Cards */}
+          <div className="about-managers__grid">
+            <div className="about-manager-card">
+              <div className="about-manager-card__avatar-wrap">
+                <img src={teamVijay} alt="Vijay Kumar" className="about-manager-card__img" />
+              </div>
+              <h4 className="about-manager-card__name">Vijay Kumar</h4>
+              <span className="about-manager-card__role">Sales Manager</span>
+              <p className="about-manager-card__desc">Drives property sales across Coimbatore with deep market insights and strong client relationships.</p>
+            </div>
+            <div className="about-manager-card">
+              <div className="about-manager-card__avatar-wrap">
+                <img src={teamSujitha} alt="Sujitha Devi" className="about-manager-card__img" />
+              </div>
+              <h4 className="about-manager-card__name">Sujitha Devi</h4>
+              <span className="about-manager-card__role">Property Consultant</span>
+              <p className="about-manager-card__desc">Guides buyers and investors to the right property with expert advice on location, value, and returns.</p>
+            </div>
+            <div className="about-manager-card">
+              <div className="about-manager-card__avatar-wrap">
+                <img src={teamRamesh} alt="Ramesh Prakash" className="about-manager-card__img" />
+              </div>
+              <h4 className="about-manager-card__name">Ramesh Prakash</h4>
+              <h5 className="about-manager-card__role">Operations Manager</h5>
+              <p className="about-manager-card__desc">Ensures seamless operations, documentation, and client support across all property transactions.</p>
             </div>
           </div>
         </div>
