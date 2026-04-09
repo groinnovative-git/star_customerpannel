@@ -76,6 +76,7 @@ function HeroSection({
               <input
                 type="text"
                 placeholder="Location"
+                aria-label="Location"
                 className="hero__search-input"
                 value={searchLocation}
                 onChange={(e) => setSearchLocation(e.target.value)}
@@ -86,15 +87,15 @@ function HeroSection({
             <div className="hero__search-field hero__search-field--type">
               <FaHome className="hero__search-field-icon" />
               <div className="hero__search-select-container">
-                <label className="hero__search-field-label">Property Type</label>
                 <div className="hero__search-select-wrapper">
                   <select
                     className="hero__search-select"
                     value={searchType}
                     onChange={(e) => setSearchType(e.target.value)}
                     id="hero-search-type"
+                    aria-label="Property Type"
                   >
-                    <option value="">Select Type</option>
+                    <option value="">Property Type</option>
                     <option value="Apartment">Apartment</option>
                     <option value="Villa">Villa</option>
                     <option value="Plot">Plot</option>

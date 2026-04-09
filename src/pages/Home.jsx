@@ -13,11 +13,12 @@ import HeroSection from '../components/HeroSection';
 import PropertyCard from '../components/PropertyCard';
 import CTAStrip from '../components/CTAStrip';
 import properties from '../data/properties';
-import { promoBanner, sellBanner, prop1, prop2, prop3, prop4, prop5, prop21 } from '../assets/index';
+import { promoBanner, sellBanner, prop1, prop2, prop3, prop4, prop5, prop6, prop21 } from '../assets/index';
 import './Home.css';
 
 function Home() {
   const revealRefs = useRef([]);
+  const quickMoveTrackRef = useRef(null);
 
   // Featured carousel — controlled slide state
   const [slideIndex, setSlideIndex] = useState(0);
@@ -77,13 +78,52 @@ function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const track = quickMoveTrackRef.current;
+    if (!track) return undefined;
+
+    let frameId;
+    let lastTime = 0;
+    let offset = 0;
+    let singleSetWidth = 0;
+    const speed = 0.05;
+
+    const measure = () => {
+      singleSetWidth = track.scrollWidth / 3;
+    };
+
+    const animate = (time) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
+
+      offset += delta * speed;
+      if (offset >= singleSetWidth) {
+        offset -= singleSetWidth;
+      }
+      track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+
+      frameId = window.requestAnimationFrame(animate);
+    };
+
+    measure();
+    window.addEventListener('resize', measure);
+    frameId = window.requestAnimationFrame(animate);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
 
   const quickMoveItems = [
     { type: 'Apartment', subtitle: 'for sales', image: prop1 },
     { type: 'Villa', subtitle: 'for sales', image: prop2 },
     { type: 'Private House', subtitle: 'for sales', image: prop3 },
     { type: 'Plot', subtitle: 'for sales', image: prop4 },
-    { type: 'Farm Land', subtitle: 'for sales', image: prop5 }
+    { type: 'Farm Land', subtitle: 'for sales', image: prop5 },
+    { type: 'Commercial', subtitle: 'for sales', image: prop6 }
   ];
 
   // All properties used in the draggable featured carousel
@@ -160,31 +200,25 @@ function Home() {
           <h2 className="home-section-heading">QuickMove Properties</h2>
         </div>
         <div className="home-quickmove__carousel">
-          <div className="home-quickmove__track">
-            {/* Original cards */}
-            {quickMoveItems.map((item) => (
-              <Link to="/services" key={item.type} className="home-quickmove__card">
-                <div className="home-quickmove__img-wrap">
-                  <img src={item.image} alt={item.type} className="home-quickmove__img" />
-                </div>
-                <div className="home-quickmove__info">
-                  <h3 className="home-quickmove__title">{item.type}</h3>
-                  <p className="home-quickmove__subtitle">{item.subtitle}</p>
-                </div>
-              </Link>
-            ))}
-            {/* Duplicate cards for seamless infinite loop */}
-            {quickMoveItems.map((item) => (
-              <Link to="/services" key={`dup-${item.type}`} className="home-quickmove__card" aria-hidden="true">
-                <div className="home-quickmove__img-wrap">
-                  <img src={item.image} alt={item.type} className="home-quickmove__img" />
-                </div>
-                <div className="home-quickmove__info">
-                  <h3 className="home-quickmove__title">{item.type}</h3>
-                  <p className="home-quickmove__subtitle">{item.subtitle}</p>
-                </div>
-              </Link>
-            ))}
+          <div className="home-quickmove__track" ref={quickMoveTrackRef}>
+            {[0, 1, 2].flatMap((copyIndex) =>
+              quickMoveItems.map((item) => (
+                <Link
+                  to="/services"
+                  key={`${copyIndex}-${item.type}`}
+                  className="home-quickmove__card"
+                  aria-hidden={copyIndex > 0}
+                >
+                  <div className="home-quickmove__img-wrap">
+                    <img src={item.image} alt={item.type} className="home-quickmove__img" />
+                  </div>
+                  <div className="home-quickmove__info">
+                    <h3 className="home-quickmove__title">{item.type}</h3>
+                    <p className="home-quickmove__subtitle">{item.subtitle}</p>
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </section>

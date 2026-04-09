@@ -1,6 +1,6 @@
 /* ========== CONTACT HERO ========== */
 .contact-hero {
-  min-height: 240px;
+  min-height: 460px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,7 +252,7 @@
 
 @media (max-width: 768px) {
   .contact-hero {
-    min-height: 200px;
+    min-height: 360px;
     padding: 24px 16px;
   }
 
@@ -284,7 +284,7 @@
 
 @media (max-width: 576px) {
   .contact-hero {
-    min-height: 180px;
+    min-height: 320px;
   }
 
   .contact-form-card__title {
