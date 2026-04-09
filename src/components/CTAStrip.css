@@ -117,11 +117,11 @@
     padding: 40px;
     gap: 32px;
   }
-  
+
   .cta-card__title {
     font-size: 1.75rem;
   }
-  
+
   .cta-card__subtitle {
     max-width: 400px;
   }
@@ -133,16 +133,16 @@
     text-align: center;
     padding: 48px 32px;
   }
-  
+
   .cta-card__content {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .cta-card__subtitle {
     max-width: 100%;
   }
-  
+
   .cta-card__btn {
     width: 100%;
     justify-content: center;
@@ -153,27 +153,26 @@
   .cta-redesign {
     padding: 40px 0;
   }
-  
+
   .cta-card {
     padding: 32px 24px;
     border-radius: 20px;
   }
-  
+
   .cta-card__title {
     font-size: 1.5rem;
   }
-  
+
   .cta-card__subtitle {
     font-size: 0.95rem;
   }
-  
+
   .cta-card__icon-wrap {
     width: 60px;
     height: 60px;
   }
-  
+
   .cta-card__icon {
     font-size: 1.7rem;
   }
 }
-

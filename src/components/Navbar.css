@@ -217,20 +217,26 @@
   }
 
   .navbar__logo-img {
-    height: 36px;
+    height: 38px;
   }
 
   .navbar__logo-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .navbar__logo-text {
-    display: none; /* Only logo on extra small screens for space */
+    display: none; /* Hide text on extra small mobile to save space */
   }
-  
+
+  .navbar__logo-img {
+    height: 36px;
+  }
+}
+
+@media (max-width: 420px) {
   .navbar__right {
-    width: 100%;
+    width: 100%; /* Full screen menu on very small devices */
   }
 }

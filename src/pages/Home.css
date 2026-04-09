@@ -4,6 +4,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -11,8 +12,15 @@
 }
 
 @keyframes floatY {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .home-quickmove,
@@ -68,12 +76,10 @@
 .home-dream-banner__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(15, 31, 34, 0.7) 0%,
-    rgba(15, 31, 34, 0.35) 50%,
-    rgba(15, 31, 34, 0.15) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(15, 31, 34, 0.7) 0%,
+      rgba(15, 31, 34, 0.35) 50%,
+      rgba(15, 31, 34, 0.15) 100%);
   z-index: 1;
 }
 
@@ -278,13 +284,11 @@
   flex-direction: column;
   justify-content: center;
   padding: 32px 40px;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 31, 34, 0.92) 0%,
-    rgba(15, 31, 34, 0.78) 35%,
-    rgba(15, 31, 34, 0.45) 65%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(15, 31, 34, 0.92) 0%,
+      rgba(15, 31, 34, 0.78) 35%,
+      rgba(15, 31, 34, 0.45) 65%,
+      transparent 100%);
 }
 
 .home-promo__heading {
@@ -524,10 +528,38 @@
   transform: translateY(-2px);
 }
 
-.home-featured__nav-btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-  box-shadow: none;
+.home-featured__next-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  animation: floatY 3s ease-in-out infinite;
+}
+
+.home-featured__next-btn {
+  width: 50px;
+  height: 50px;
+  background: var(--gold);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(232, 160, 32, 0.3);
+  text-decoration: none;
+}
+
+.home-featured__next-btn:hover {
+  background: var(--primary);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(29, 65, 69, 0.4);
+  color: var(--white);
+}
+
+.home-featured__next-icon {
+  font-size: 1.4rem;
 }
 
 /* Responsive card widths */
@@ -864,8 +896,13 @@
 
 /* Marquee auto-scroll */
 @keyframes reviews-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .home-reviews__carousel {

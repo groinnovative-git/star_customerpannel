@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import PropertyDetail from './pages/PropertyDetail';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import LeadPopup from './components/LeadPopup';
 
 function App() {
   const { pathname } = useLocation();
@@ -18,6 +19,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
+      <LeadPopup />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

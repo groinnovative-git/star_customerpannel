@@ -98,19 +98,41 @@ function Services() {
           {/* Pagination Row */}
           {totalEntries > 0 && (
             <div className="services-pagination">
-              <p className="services-pagination__info">
-                Showing {totalEntries === 0 ? 0 : startIndex + 1} to {endIndex} of {totalEntries} entries
-              </p>
-              <button 
-                className={`services-pagination__next ${endIndex >= totalEntries ? 'services-pagination__next--disabled' : ''}`}
-                onClick={handleNextPage}
-                disabled={endIndex >= totalEntries}
-                aria-label="Next page"
-              >
-                <FiChevronRight />
-              </button>
+              <div className="services-pagination__info">
+                Showing entries {startIndex + 1} – {endIndex} of {totalEntries}
+              </div>
+              <div className="services-pagination__controls">
+                <button 
+                  className={`services-pagination__btn services-pagination__btn--prev ${currentPage === 1 ? 'services-pagination__btn--disabled' : ''}`}
+                  onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}
+                  disabled={currentPage === 1}
+                  aria-label="Previous page"
+                >
+                  <FiChevronRight style={{ transform: 'rotate(180deg)' }} />
+                </button>
+
+                {[...Array(Math.ceil(totalEntries / itemsPerPage))].map((_, i) => (
+                  <button
+                    key={i + 1}
+                    className={`services-pagination__page-link ${currentPage === i + 1 ? 'services-pagination__page-link--active' : ''}`}
+                    onClick={() => setCurrentPage(i + 1)}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+
+                <button 
+                  className={`services-pagination__btn services-pagination__btn--next ${endIndex >= totalEntries ? 'services-pagination__btn--disabled' : ''}`}
+                  onClick={handleNextPage}
+                  disabled={endIndex >= totalEntries}
+                  aria-label="Next page"
+                >
+                  <FiChevronRight />
+                </button>
+              </div>
             </div>
           )}
+
           {filteredProperties.length === 0 && (
             <p className="services-empty">No properties found for this category.</p>
           )}

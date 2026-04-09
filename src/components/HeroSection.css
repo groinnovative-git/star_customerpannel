@@ -359,44 +359,60 @@
 
 @media (max-width: 576px) {
   .hero {
-    min-height: 380px;
+    min-height: 480px; /* Increased from 380px to accommodate content */
   }
 
   .hero__content {
-    padding: 20px 12px;
+    padding: 32px 16px;
   }
 
   .hero__title {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
+    font-size: 1.45rem;
+    margin-bottom: 12px;
   }
 
   .hero__subtitle {
-    display: none; /* Remove subtitle on mobile to save space for search */
+    display: block; /* Preserve subtitle */
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    max-width: 100%;
+    opacity: 0.85;
   }
 
   .hero__categories {
-    display: none; /* Hide categories on small mobile */
+    display: flex; /* Preserve categories */
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content: center;
+    transform: scale(0.9);
+  }
+
+  .hero__category-box {
+    width: 62px;
+    height: 58px;
   }
 
   .hero__search {
-    margin-top: 10px;
-    border-radius: 12px;
+    margin-top: 16px;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   }
 
   .hero__search-field {
-    min-height: 48px;
-    padding: 0 12px;
+    min-height: 44px;
+    padding: 0 10px;
   }
 
-  .hero__search-field--type {
-    margin-top: 0;
-    margin-bottom: 0;
+  .hero__search-divider {
+    width: 100%;
+    margin: 4px 0;
   }
 
   .hero__search-btn {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     min-height: 48px;
-    padding: 0 14px;
+    padding: 0 16px;
+    margin-top: 8px;
   }
 }

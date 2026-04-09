@@ -5,7 +5,7 @@ import {
   FaBed, FaBath, FaVectorSquare, FaCalendarAlt,
   FaCompass, FaChair, FaCheckCircle, FaDumbbell,
   FaParking, FaShieldAlt, FaBolt, FaVideo,
-  FaSwimmingPool, FaTree, FaCar
+  FaSwimmingPool, FaTree, FaCar, FaWhatsapp, FaArrowUp
 } from 'react-icons/fa';
 import {
   MdElevator, MdLocalHospital, MdSchool, MdDirectionsBus
@@ -26,6 +26,20 @@ function PropertyDetail() {
 
   const images = property.images || [property.image];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Scroll to top visibility logic
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Carousel Logic — unchanged
   const nextImage = useCallback(() => {
@@ -107,43 +121,18 @@ function PropertyDetail() {
         {/* ====== LEFT COLUMN (70%) ====== */}
         <div className="detail-left" id="detail-left">
 
-          {/* Main Image Slider */}
-          <div className="detail-carousel">
-            <div className="detail-carousel__main">
-              <div
-                className="detail-carousel__slider"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                {images.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`${property.name} view ${i + 1}`}
-                    className="detail-main-image"
-                  />
-                ))}
-              </div>
-
-              {/* Navigation Arrows — unchanged */}
-              <button className="carousel-control prev" onClick={handlePrev} aria-label="Previous image">
-                <FaChevronLeft />
-              </button>
-              <button className="carousel-control next" onClick={handleNext} aria-label="Next image">
-                <FaChevronRight />
-              </button>
-            </div>
-
-            {/* 3 Small Thumbnails */}
-            <div className="detail-thumb-row">
-              {thumbnails.map((img, i) => (
-                <button
-                  key={i}
-                  className={`detail-thumb-sm ${currentIndex === i ? 'detail-thumb-sm--active' : ''}`}
-                  onClick={() => setCurrentIndex(i)}
-                >
-                  <img src={img} alt={`Thumb ${i + 1}`} />
+          {/* Virtual Video Tour Case */}
+          <div className="detail-card detail-video-section">
+            <h2 className="detail-card__title">Virtual Video Tour</h2>
+            <div className="detail-video-player">
+              <div className="detail-video-player__overlay">
+                <button className="detail-video-player__play-btn" aria-label="Play video tour">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </button>
-              ))}
+                <span className="detail-video-player__label">Watch Virtual Tour</span>
+              </div>
             </div>
           </div>
 
@@ -208,34 +197,71 @@ function PropertyDetail() {
             <p className="detail-card__text">{property.description}</p>
           </div>
 
-          {/* Floor Plan & Video Tour Card */}
-          <div className="detail-card detail-floorplan-section">
-            <h2 className="detail-card__title">Floor Plan & Video Tour</h2>
-            <div className="detail-floorplan__container">
-              {/* Video Player Part */}
-              <div className="detail-video-player">
-                <div className="detail-video-player__overlay">
-                  <button className="detail-video-player__play-btn" aria-label="Play video tour">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </button>
-                  <span className="detail-video-player__label">Watch Virtual Tour</span>
-                </div>
+          {/* Main Image Slider (Moved Above Location) */}
+          <div className="detail-carousel">
+            <div className="detail-carousel__main">
+              <div
+                className="detail-carousel__slider"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`${property.name} view ${i + 1}`}
+                    className="detail-main-image"
+                  />
+                ))}
               </div>
 
-              {/* Floor Plan Image Part */}
-              <div className="detail-floorplan-image">
+              {/* Navigation Arrows — unchanged */}
+              <button className="carousel-control prev" onClick={handlePrev} aria-label="Previous image">
+                <FaChevronLeft />
+              </button>
+              <button className="carousel-control next" onClick={handleNext} aria-label="Next image">
+                <FaChevronRight />
+              </button>
+            </div>
+
+            {/* 3 Small Thumbnails */}
+            <div className="detail-thumb-row">
+              {thumbnails.map((img, i) => (
+                <button
+                  key={i}
+                  className={`detail-thumb-sm ${currentIndex === i ? 'detail-thumb-sm--active' : ''}`}
+                  onClick={() => setCurrentIndex(i)}
+                >
+                  <img src={img} alt={`Thumb ${i + 1}`} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Map Section */}
+          <div className="detail-card detail-floorplan-section">
+            <h2 className="detail-card__title">Property Location</h2>
+            <div className="detail-floorplan__container">
+              {/* Google Map Section (Replaced Floor Plan) */}
+              <div className="detail-map-section">
                 <div className="detail-floorplan-image__header">
-                  <span className="detail-floorplan-image__title">2D Floor Plan Layout</span>
+                  <span className="detail-floorplan-image__title">Property Location</span>
                 </div>
-                <div className="detail-floorplan-image__placeholder">
-                  <FaVectorSquare className="detail-floorplan-image__icon" />
-                  <span>Interactive Floor Plan Coming Soon</span>
+                <div className="detail-map-wrapper">
+                  <iframe
+                    title="Property Location"
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(`${property.location}, ${property.city}`)}&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                  ></iframe>
                 </div>
               </div>
             </div>
           </div>
+
+
         </div>
 
         {/* ====== RIGHT COLUMN (30%) ====== */}
@@ -276,17 +302,48 @@ function PropertyDetail() {
       {/* Similar Properties */}
       <section className="detail-similar" id="similar-properties">
         <div className="container">
-          <h2 className="section-title">Similar Properties</h2>
+          <div className="detail-similar__header">
+            <h2 className="section-title">Similar Properties</h2>
+            <div className="detail-similar__nav">
+              <button className="detail-similar__nav-btn" aria-label="Previous property">
+                <FaChevronLeft />
+              </button>
+              <button className="detail-similar__nav-btn" aria-label="Next property">
+                <FaChevronRight />
+              </button>
+            </div>
+          </div>
           <div className="detail-similar__grid">
             {similarProperties.map((prop) => (
               <PropertyCard key={prop.id} property={prop} variant="grid" />
             ))}
           </div>
+
         </div>
       </section>
 
       {/* CTA Strip */}
       <CTAStrip />
+
+      {/* Floating Action Icons */}
+      <div className="detail-floating-actions">
+        <a
+          href="https://wa.me/919999999999"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-action-btn floating-action-btn--whatsapp"
+          aria-label="Contact on WhatsApp"
+        >
+          <FaWhatsapp />
+        </a>
+        <button
+          className={`floating-action-btn floating-action-btn--top ${showScrollTop ? 'floating-action-btn--visible' : ''}`}
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp />
+        </button>
+      </div>
     </div>
   );
 }

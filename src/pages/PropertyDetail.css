@@ -75,8 +75,13 @@
   transform: translateY(-50%) scale(1.08);
 }
 
-.carousel-control.prev { left: 16px; }
-.carousel-control.next { right: 16px; }
+.carousel-control.prev {
+  left: 16px;
+}
+
+.carousel-control.next {
+  right: 16px;
+}
 
 /* ---- 3 Small Thumbnails Row ---- */
 .detail-thumb-row {
@@ -320,47 +325,23 @@
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.detail-floorplan-image {
-  border: 2px dashed #e2e8f0;
+.detail-map-section {
+  border: 1.5px solid #f1f5f9;
   border-radius: 12px;
-  padding: 24px;
+  overflow: hidden;
   background: #f8fafc;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: center;
-  text-align: center;
 }
 
-.detail-floorplan-image__header {
+.detail-map-wrapper {
   width: 100%;
+  height: 320px;
 }
 
-.detail-floorplan-image__title {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 8px;
-}
-
-.detail-floorplan-image__placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: #94a3b8;
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-.detail-floorplan-image__icon {
-  font-size: 2rem;
-  opacity: 0.3;
-}
 
 /* ========== RIGHT COLUMN (SIDEBAR) ========== */
 .detail-right {
@@ -489,12 +470,47 @@
   background: var(--bg);
 }
 
+.detail-similar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.detail-similar__nav {
+  display: flex;
+  gap: 12px;
+}
+
+.detail-similar__nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(29, 65, 69, 0.1);
+  background: var(--white);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.detail-similar__nav-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(29, 65, 69, 0.2);
+}
+
 .detail-similar__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 16px;
+  gap: 20px;
 }
+
 
 /* ========== RESPONSIVE ========== */
 /* ========== RESPONSIVE ========== */
@@ -506,6 +522,12 @@
 
   .detail-sidebar {
     position: static;
+  }
+
+  .detail-left {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
 
@@ -535,7 +557,8 @@
   }
 
   .detail-sidebar-title-card {
-    display: none; /* Already shown in quickinfo in detail-left */
+    display: none;
+    /* Already shown in quickinfo in detail-left */
   }
 
   .detail-similar__grid {
@@ -578,7 +601,8 @@
   }
 
   .detail-video-player {
-    height: 220px; /* Requested mobile video height */
+    height: 220px;
+    /* Requested mobile video height */
   }
 
   .detail-floorplan__container {
@@ -586,7 +610,8 @@
   }
 
   .detail-similar__grid {
-    grid-template-columns: 1fr; /* 1 card per row */
+    grid-template-columns: 1fr;
+    /* 1 card per row */
     gap: 20px;
   }
 
@@ -597,5 +622,70 @@
   .detail-card__title {
     font-size: 1.1rem;
     margin-bottom: 12px;
+  }
+}
+
+/* ========== FLOATING ACTION BUTTONS ========== */
+.detail-floating-actions {
+  position: fixed;
+  bottom: 32px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1000;
+}
+
+.floating-action-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border: none;
+  text-decoration: none;
+}
+
+.floating-action-btn:hover {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.floating-action-btn--whatsapp {
+  background: #1d4145;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(29, 65, 69, 0.45);
+}
+
+.floating-action-btn--top {
+  background: var(--white);
+  color: var(--primary);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.floating-action-btn--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (max-width: 576px) {
+  .detail-floating-actions {
+    bottom: 24px;
+    right: 16px;
+    gap: 12px;
+  }
+
+  .floating-action-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.3rem;
   }
 }

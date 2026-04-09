@@ -621,15 +621,15 @@
 .about-evolution__journey::before {
   content: '';
   position: absolute;
-  top: 30px; /* Aligned with center of the icon */
+  top: 30px;
+  /* Aligned with center of the icon */
   left: 20px;
   right: 20px;
   height: 2px;
-  background: linear-gradient(to right, 
-    rgba(29, 65, 69, 0.25) 0%, 
-    var(--gold) 50%, 
-    rgba(232, 160, 32, 0.1) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(29, 65, 69, 0.25) 0%,
+      var(--gold) 50%,
+      rgba(232, 160, 32, 0.1) 100%);
   z-index: 0;
 }
 
@@ -645,7 +645,7 @@
 .about-evolution__node {
   display: flex;
   flex-direction: column;
-  padding-bottom:10px;
+  padding-bottom: 10px;
   align-items: center;
   gap: 10px;
 }
@@ -723,6 +723,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 20px;
   }
+
   .about-evolution__journey::before {
     display: none;
   }
@@ -732,11 +733,13 @@
   .about-evolution {
     padding: 30px 0;
   }
+
   .about-evolution__journey {
     grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 30px;
   }
+
   .about-evolution__info {
     padding: 16px;
   }

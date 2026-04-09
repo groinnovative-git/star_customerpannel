@@ -1,4 +1,4 @@
-/* ========== PREMIUM STICKY FILTER ========== */
+﻿/* ========== PREMIUM STICKY FILTER ========== */
 .services-filter-sticky {
   position: sticky;
   top: 72px;
@@ -91,50 +91,66 @@
 
 /* ========== PAGINATION ========== */
 .services-pagination {
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(15, 31, 34, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 30px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
 }
 
 .services-pagination__info {
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 0.82rem;
   color: #64748b;
-  letter-spacing: 0.2px;
+  font-weight: 500;
 }
 
-.services-pagination__next {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+.services-pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-pagination__btn,
+.services-pagination__page-link {
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
   background: var(--white);
-  color: var(--primary);
-  border: 1.5px solid rgba(29, 65, 69, 0.15);
-  font-size: 1.4rem;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
 }
 
-.services-pagination__next:hover:not(:disabled) {
+.services-pagination__btn:hover:not(:disabled),
+.services-pagination__page-link:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--bg);
+}
+
+.services-pagination__page-link--active {
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
-  transform: translateX(4px);
-  box-shadow: 0 8px 20px rgba(29, 65, 69, 0.2);
 }
 
-.services-pagination__next--disabled {
+.services-pagination__btn--disabled {
   opacity: 0.3;
-  cursor: not-allowed;
-  box-shadow: none;
+  cursor: default;
+  background: #f8fafc;
 }
+
+.services-pagination__btn svg {
+  font-size: 0.95rem;
+}
+
 
 /* Premium Card Overrides for Services Showcase - Now global in PropertyCard.css */
 /* Removed specific overrides to maintain uniform card sizing across the app */
@@ -165,9 +181,11 @@
 }
 
 /* ========== RESPONSIVE ========== */
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 COLUMNS ON TABLET */
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
 }
@@ -175,7 +193,6 @@
 @media (max-width: 768px) {
   .services-filter-sticky {
     top: 64px;
-    /* Offset for Mobile Navbar height */
     padding: 16px 0;
   }
 
@@ -193,14 +210,10 @@
   }
 
   .services-grid {
-    grid-template-columns: 1fr; /* 1 COLUMN ON MOBILE */
+    grid-template-columns: 1fr;
     max-width: 450px;
     margin: 0 auto;
     gap: 24px;
-  }
-
-  .services-grid .property-card__image-wrap {
-    height: 220px;
   }
 
   .services-pagination {
@@ -213,20 +226,28 @@
 @media (max-width: 576px) {
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
+  }
+
+  .services-filter-sticky {
+    padding: 12px 0;
+  }
+
+  .services-filter__tabs {
+    gap: 10px;
   }
 
   .services-filter__tab {
     padding: 8px 16px;
     font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .services-filter__tab-icon {
+    font-size: 1rem;
   }
 
   .property-card {
-    padding: 12px;
-  }
-
-  .property-card__btn {
-    width: 100%;
-    justify-content: center;
+    border-radius: 12px;
   }
 }
