@@ -226,30 +226,31 @@ function About() {
           </div>
 
           {/* Manager Cards */}
+          <div className="about-managers__header">
+            <span className="about-eyebrow">Core Team</span>
+            <h3 className="about-managers__heading">Meet Our Key Professionals</h3>
+          </div>
           <div className="about-managers__grid">
             <div className="about-manager-card">
-              <div className="about-manager-card__avatar-wrap">
-                <img src={teamVijay} alt="Vijay Kumar" className="about-manager-card__img" />
+              <img src={teamVijay} alt="Vijay Kumar" className="about-manager-card__img" />
+              <div className="about-manager-card__overlay">
+                <h4 className="about-manager-card__name">Vijay Kumar</h4>
+                <span className="about-manager-card__role">Sales Manager</span>
               </div>
-              <h4 className="about-manager-card__name">Vijay Kumar</h4>
-              <span className="about-manager-card__role">Sales Manager</span>
-              <p className="about-manager-card__desc">Drives property sales across Coimbatore with deep market insights and strong client relationships.</p>
             </div>
             <div className="about-manager-card">
-              <div className="about-manager-card__avatar-wrap">
-                <img src={teamSujitha} alt="Sujitha Devi" className="about-manager-card__img" />
+              <img src={teamSujitha} alt="Sujitha Devi" className="about-manager-card__img" />
+              <div className="about-manager-card__overlay">
+                <h4 className="about-manager-card__name">Sujitha Devi</h4>
+                <span className="about-manager-card__role">Property Consultant</span>
               </div>
-              <h4 className="about-manager-card__name">Sujitha Devi</h4>
-              <span className="about-manager-card__role">Property Consultant</span>
-              <p className="about-manager-card__desc">Guides buyers and investors to the right property with expert advice on location, value, and returns.</p>
             </div>
             <div className="about-manager-card">
-              <div className="about-manager-card__avatar-wrap">
-                <img src={teamRamesh} alt="Ramesh Prakash" className="about-manager-card__img" />
+              <img src={teamRamesh} alt="Ramesh Prakash" className="about-manager-card__img" />
+              <div className="about-manager-card__overlay">
+                <h4 className="about-manager-card__name">Ramesh Prakash</h4>
+                <h5 className="about-manager-card__role">Operations Manager</h5>
               </div>
-              <h4 className="about-manager-card__name">Ramesh Prakash</h4>
-              <h5 className="about-manager-card__role">Operations Manager</h5>
-              <p className="about-manager-card__desc">Ensures seamless operations, documentation, and client support across all property transactions.</p>
             </div>
           </div>
         </div>
