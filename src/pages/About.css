@@ -563,149 +563,169 @@
 }
 
 /* ========================================================
-   6. EVOLUTION
+   6. EVOLUTION — Compact Premium Redesign
    ======================================================== */
 .about-evolution {
-  padding: 36px 0;
-  background: var(--bg);
+  padding: 40px 0;
+  background: #fff;
+  border-top: 1px solid rgba(229, 231, 235, 0.5);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.about-evolution__header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 32px;
 }
 
 .about-evolution__heading {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-weight: 700;
   color: var(--dark);
-  line-height: 1.2;
-  margin: 0 0 8px;
+  margin-bottom: 8px;
 }
 
 .about-evolution__sub {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: #6b7280;
-  line-height: 1.6;
-  max-width: 480px;
+  line-height: 1.5;
   margin: 0 auto;
 }
 
-/* Track */
-.about-evolution__track {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  margin-top: 32px;
-}
-
-.about-evolution__item {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-}
-
-/* Connector between items */
-.about-evolution__connector {
-  flex-shrink: 0;
-  width: 32px;
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-}
-
-.about-evolution__connector::before {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(to right, rgba(29, 65, 69, 0.3), rgba(29, 65, 69, 0.1));
-}
-
-/* Card */
-.about-evolution__card {
-  flex: 1;
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px 18px;
-  border: 1px solid rgba(29, 65, 69, 0.08);
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.about-evolution__journey {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   position: relative;
-  overflow: hidden;
+  margin-top: 40px;
 }
 
-.about-evolution__card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-}
-
-.about-evolution__card::before {
+/* Horizontal Line Overlay */
+.about-evolution__journey::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(to right, var(--primary), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 30px; /* Aligned with center of the icon */
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: linear-gradient(to right, 
+    rgba(29, 65, 69, 0.25) 0%, 
+    var(--gold) 50%, 
+    rgba(232, 160, 32, 0.1) 100%
+  );
+  z-index: 0;
 }
 
-.about-evolution__card:hover::before {
-  opacity: 1;
-}
-
-.about-evolution__card-top {
+.about-evolution__milestone {
+  position: relative;
+  z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2px;
+  gap: 16px;
 }
 
-.about-evolution__num {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: rgba(29, 65, 69, 0.07);
-  line-height: 1;
-  user-select: none;
+.about-evolution__node {
+  display: flex;
+  flex-direction: column;
+  padding-bottom:10px;
+  align-items: center;
+  gap: 10px;
 }
 
-.about-evolution__icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  background: rgba(29, 65, 69, 0.07);
-  color: var(--primary);
-  font-size: 1.1rem;
+.about-evolution__icon-box {
+  width: 60px;
+  height: 60px;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--primary);
+  font-size: 1.4rem;
+  box-shadow: 0 4px 15px rgba(232, 160, 32, 0.12);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.about-evolution__year {
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+.about-evolution__milestone:hover .about-evolution__icon-box {
+  background: var(--gold);
+  color: var(--white);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 160, 32, 0.3);
+}
+
+.about-evolution__year-tag {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--gold);
-  text-transform: uppercase;
+  background: rgba(232, 160, 32, 0.08);
+  padding: 3px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(232, 160, 32, 0.1);
 }
 
-.about-evolution__label {
+.about-evolution__info {
+  background: #fdfcf9;
+  border: 1px solid rgba(29, 65, 69, 0.06);
+  border-radius: 18px;
+  padding: 18px 16px;
+  text-align: center;
+  transition: all 0.35s ease;
+  flex: 1;
+}
+
+.about-evolution__milestone:hover .about-evolution__info {
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border-color: rgba(232, 160, 32, 0.15);
+  transform: translateY(-5px);
+}
+
+.about-evolution__milestone-title {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--dark);
+  margin-bottom: 6px;
   line-height: 1.3;
+}
+
+.about-evolution__milestone-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.6;
   margin: 0;
 }
 
-.about-evolution__desc {
-  font-size: 0.8rem;
-  color: #6b7280;
-  line-height: 1.62;
-  margin: 0;
+/* Response Fixes */
+@media (max-width: 900px) {
+  .about-evolution__journey {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+  }
+  .about-evolution__journey::before {
+    display: none;
+  }
 }
+
+@media (max-width: 500px) {
+  .about-evolution {
+    padding: 30px 0;
+  }
+  .about-evolution__journey {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  .about-evolution__info {
+    padding: 16px;
+  }
+}
+
 
 /* ========================================================
    7. STATS
@@ -780,11 +800,13 @@
   }
 
   .about-body__content {
-    order: 2; /* Text below image */
+    order: 2;
+    /* Text below image */
   }
 
   .about-body__images {
-    order: 1; /* Image top */
+    order: 1;
+    /* Image top */
     height: 320px;
   }
 

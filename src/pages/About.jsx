@@ -21,13 +21,13 @@ import './About.css';
 function About() {
 
   /* ── Count-up ──────────────────────────────────────── */
-  const statsRef  = useRef(null);
-  const animated  = useRef(false);
+  const statsRef = useRef(null);
+  const animated = useRef(false);
   const [counts, setCounts] = useState({ sold: 0, clients: 0, years: 0 });
 
   const animateCount = (to, duration, key) => {
     const start = performance.now();
-    const tick  = (now) => {
+    const tick = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const v = Math.floor(to * (1 - Math.pow(1 - p, 3)));
       setCounts((prev) => ({ ...prev, [key]: v }));
@@ -44,7 +44,7 @@ function About() {
         animated.current = true;
         animateCount(1200, 2000, 'sold');
         animateCount(1000, 1800, 'clients');
-        animateCount(8,    1400, 'years');
+        animateCount(8, 1400, 'years');
       }
     }, { threshold: 0.4 });
     obs.observe(el);
@@ -53,18 +53,18 @@ function About() {
 
   /* ── Data ──────────────────────────────────────────── */
   const whyCards = [
-    { icon: <HiOutlineUserGroup />,          title: 'Trusted Guidance',        desc: 'Expert advisors by your side from first inquiry to final handover — every step handled with integrity.' },
-    { icon: <HiOutlineDocumentCheck />,      title: 'Verified Properties',     desc: 'Every listing is rigorously verified for legal clarity, documentation accuracy, and ownership status.' },
-    { icon: <HiOutlineShieldCheck />,        title: 'Transparent Process',     desc: 'No hidden fees, no surprises. Clear communication and honest pricing at every stage of your deal.' },
-    { icon: <HiOutlineMapPin />,             title: 'Local Market Expertise',  desc: 'Deep knowledge of Coimbatore\'s urban, industrial, and agricultural real estate landscape.' },
-    { icon: <HiOutlineChatBubbleLeftRight />,title: 'End-to-End Support',      desc: 'From property search and legal liaisoning to loan assistance and registration — we handle everything.' },
+    { icon: <HiOutlineUserGroup />, title: 'Trusted Guidance', desc: 'Expert advisors by your side from first inquiry to final handover — every step handled with integrity.' },
+    { icon: <HiOutlineDocumentCheck />, title: 'Verified Properties', desc: 'Every listing is rigorously verified for legal clarity, documentation accuracy, and ownership status.' },
+    { icon: <HiOutlineShieldCheck />, title: 'Transparent Process', desc: 'No hidden fees, no surprises. Clear communication and honest pricing at every stage of your deal.' },
+    { icon: <HiOutlineMapPin />, title: 'Local Market Expertise', desc: 'Deep knowledge of Coimbatore\'s urban, industrial, and agricultural real estate landscape.' },
+    { icon: <HiOutlineChatBubbleLeftRight />, title: 'End-to-End Support', desc: 'From property search and legal liaisoning to loan assistance and registration — we handle everything.' },
   ];
 
   const milestones = [
-    { num: '01', year: '2018', icon: <HiOutlineBuildingOffice2 />, label: 'Company Founded',    desc: 'Launched with a clear mission — to simplify property buying and selling across Coimbatore.' },
-    { num: '02', year: '2020', icon: <HiOutlineTrophy />,          label: '100+ Deals Closed',  desc: 'Reached our first milestone helping over 100 families and investors find their ideal property.' },
-    { num: '03', year: '2022', icon: <HiOutlineArrowTrendingUp />, label: 'Market Expansion',   desc: 'Extended into commercial, industrial, and agricultural real estate across high-demand zones.' },
-    { num: '04', year: '2026+',icon: <HiOutlineLightBulb />,       label: 'Future Vision',      desc: 'Building smarter property solutions and deeper client relationships to lead the next chapter.' },
+    { num: '01', year: '2018', icon: <HiOutlineBuildingOffice2 />, label: 'Company Founded', desc: 'Launched with a clear mission — to simplify property buying and selling across Coimbatore.' },
+    { num: '02', year: '2020', icon: <HiOutlineTrophy />, label: '100+ Deals Closed', desc: 'Reached our first milestone helping over 100 families and investors find their ideal property.' },
+    { num: '03', year: '2022', icon: <HiOutlineArrowTrendingUp />, label: 'Market Expansion', desc: 'Extended into commercial, industrial, and agricultural real estate across high-demand zones.' },
+    { num: '04', year: '2026+', icon: <HiOutlineLightBulb />, label: 'Future Vision', desc: 'Building smarter property solutions and deeper client relationships to lead the next chapter.' },
   ];
 
   return (
@@ -109,7 +109,7 @@ function About() {
             </div>
             <div className="about-body__images">
               <img src={prop18} alt="Premium property" className="about-body__img about-body__img--1" />
-              <img src={prop17} alt="Real estate"      className="about-body__img about-body__img--2" />
+              <img src={prop17} alt="Real estate" className="about-body__img about-body__img--2" />
             </div>
           </div>
         </div>
@@ -266,24 +266,21 @@ function About() {
             </p>
           </div>
 
-          <div className="about-evolution__track">
-            {milestones.map((item, idx) => (
-              <div key={item.year} className="about-evolution__item">
-                <div className="about-evolution__card">
-                  <div className="about-evolution__card-top">
-                    <span className="about-evolution__num">{item.num}</span>
-                    <div className="about-evolution__icon">{item.icon}</div>
-                  </div>
-                  <span className="about-evolution__year">{item.year}</span>
-                  <h4 className="about-evolution__label">{item.label}</h4>
-                  <p className="about-evolution__desc">{item.desc}</p>
+          <div className="about-evolution__journey">
+            {milestones.map((item) => (
+              <div key={item.year} className="about-evolution__milestone">
+                <div className="about-evolution__node">
+                  <div className="about-evolution__icon-box">{item.icon}</div>
+                  <div className="about-evolution__year-tag">{item.year}</div>
                 </div>
-                {idx < milestones.length - 1 && (
-                  <div className="about-evolution__connector" aria-hidden="true" />
-                )}
+                <div className="about-evolution__info">
+                  <h4 className="about-evolution__milestone-title">{item.label}</h4>
+                  <p className="about-evolution__milestone-desc">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 

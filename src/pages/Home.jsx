@@ -26,10 +26,10 @@ function Home() {
   useEffect(() => {
     const measure = () => {
       const w = window.innerWidth;
-      if (w >= 1280)      setSlideConfig({ step: 310, perView: 4 });
+      if (w >= 1280) setSlideConfig({ step: 310, perView: 4 });
       else if (w >= 1024) setSlideConfig({ step: 280, perView: 3 });
-      else if (w >= 640)  setSlideConfig({ step: 260, perView: 2 });
-      else                setSlideConfig({ step: 260, perView: 1 });
+      else if (w >= 640) setSlideConfig({ step: 260, perView: 2 });
+      else setSlideConfig({ step: 260, perView: 1 });
     };
     measure();
     window.addEventListener('resize', measure);
@@ -134,11 +134,11 @@ function Home() {
       initials: 'M'
     },
     {
-      name: 'Rahul',
+      name: 'Sree Roshini',
       location: 'Avinashi Road',
       review: 'Smooth loan assistance and complete documentation support. A one-stop solution for all real estate needs.',
       rating: 5,
-      initials: 'R'
+      initials: 'S'
     }
   ];
 
@@ -275,7 +275,7 @@ function Home() {
             >
               <FaChevronLeft />
             </button>
-<button
+            <button
               className="home-featured__nav-btn"
               onClick={slideNext}
               disabled={slideIndex >= maxSlide}

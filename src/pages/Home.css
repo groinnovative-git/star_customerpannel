@@ -897,12 +897,12 @@
 .home-reviews__card {
   background: #fff;
   border-radius: 14px;
-  padding: 28px 24px 24px;
+  padding: 20px 24px 18px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(29, 65, 69, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   position: relative;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   flex: 0 0 300px;
@@ -942,7 +942,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-top: 10px;
+  padding-top: 8px;
   border-top: 1px solid #f1f5f9;
 }
 
