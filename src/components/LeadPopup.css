@@ -21,8 +21,8 @@
 .lead-popup-content {
   background: var(--white);
   width: 100%;
-  max-width: 500px;
-  border-radius: 24px;
+  max-width: 420px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -36,12 +36,12 @@
 
 .lead-popup-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
   background: #f1f5f9;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -59,33 +59,34 @@
 }
 
 .lead-popup-body {
-  padding: 40px;
+  padding: 32px 30px 28px;
 }
 
 .lead-popup-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .lead-popup-title {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.2;
+  padding-inline: 18px;
 }
 
 .lead-popup-subtitle {
   color: #64748b;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .lead-popup-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .lead-popup-input-group {
@@ -96,18 +97,18 @@
 
 .lead-popup-input-icon {
   position: absolute;
-  left: 16px;
+  left: 14px;
   color: var(--gold);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .lead-popup-input {
   width: 100%;
-  padding: 14px 16px 14px 44px;
+  padding: 12px 14px 12px 40px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 0.95rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
   color: var(--dark);
 }
@@ -121,17 +122,17 @@
 
 .lead-popup-phone-group {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .lead-popup-country-select {
-  width: 110px;
-  padding: 0 12px;
+  width: 100px;
+  padding: 0 10px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 0.85rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--dark);
   cursor: pointer;
@@ -143,15 +144,15 @@
 }
 
 .lead-popup-submit {
-  margin-top: 8px;
-  padding: 16px;
+  margin-top: 4px;
+  padding: 13px;
   background: var(--gold);
   color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.6px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 10px 15px -3px rgba(232, 160, 32, 0.3);
@@ -165,18 +166,24 @@
 
 .lead-popup-footer {
   text-align: center;
-  margin-top: 24px;
-  font-size: 0.75rem;
+  margin-top: 18px;
+  font-size: 0.72rem;
+  line-height: 1.5;
   color: #94a3b8;
 }
 
 @media (max-width: 576px) {
   .lead-popup-body {
-    padding: 30px 24px;
+    padding: 26px 20px 22px;
   }
   
   .lead-popup-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    padding-inline: 12px;
+  }
+
+  .lead-popup-subtitle {
+    font-size: 0.82rem;
   }
   
   .lead-popup-phone-group {

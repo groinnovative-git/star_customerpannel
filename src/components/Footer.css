@@ -1,53 +1,53 @@
 .footer {
   background: var(--dark);
   color: var(--white);
-  padding: 48px 0 0;
+  padding: 38px 0 0;
 }
 
 .footer__grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-  gap: 28px;
+  gap: 24px;
 }
 
 /* ---- Logo & Tagline ---- */
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .footer__logo-img {
-  height: 35px;
+  height: 32px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
 .footer__tagline {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: #9ca3af;
-  line-height: 1.7;
-  margin-bottom: 20px;
+  line-height: 1.65;
+  margin-bottom: 16px;
 }
 
 /* ---- Social Icons ---- */
 .footer__socials {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .footer__social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
   color: var(--white);
@@ -56,23 +56,23 @@
 
 .footer__social-icon:hover {
   background: var(--gold);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* ---- Columns ---- */
 .footer__heading {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  font-size: 0.98rem;
+  margin-bottom: 14px;
   color: var(--white);
 }
 
 .footer__list li {
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 }
 
 .footer__list a {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: #9ca3af;
   transition: color var(--transition);
 }
@@ -85,14 +85,15 @@
 .footer__contact-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 0.9rem;
+  gap: 9px;
+  font-size: 0.84rem;
+  line-height: 1.6;
   color: #9ca3af;
 }
 
 .footer__contact-icon {
   flex-shrink: 0;
-  font-size: 1.1rem;
+  font-size: 0.96rem;
   color: var(--gold);
   display: flex;
   align-items: center;
@@ -100,11 +101,11 @@
 
 /* ---- Bottom Bar ---- */
 .footer__bottom {
-  margin-top: 32px;
-  padding: 16px 0;
+  margin-top: 24px;
+  padding: 14px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #6b7280;
 }
 

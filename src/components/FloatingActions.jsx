@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaWhatsapp, FaArrowUp, FaPhoneAlt, FaYoutube, FaTimes } from 'react-icons/fa';
+import { FaWhatsapp, FaArrowUp, FaPhoneAlt, FaYoutube } from 'react-icons/fa';
 import './FloatingActions.css';
 
 const WHATSAPP_NUMBER = '919345306018';
@@ -7,9 +7,6 @@ const WHATSAPP_MSG = encodeURIComponent("Hello, I'm interested in your propertie
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
 function FloatingActions() {
-  const [expanded, setExpanded] = useState(false);
-
-  // Show scroll to top visibility
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -20,25 +17,11 @@ function FloatingActions() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setExpanded(false);
-  };
-
-  const toggleMenu = () => {
-    setExpanded(!expanded);
   };
 
   return (
-    <div className={`floating-menu ${expanded ? 'floating-menu--expanded' : ''}`}>
+    <div className="floating-menu">
       <div className="floating-menu__actions">
-        {/* Scroll to Top - Orange/Purple */}
-        <button
-          className={`floating-menu__btn floating-menu__btn--top ${showTop ? 'visible' : ''}`}
-          onClick={scrollToTop}
-          aria-label="Scroll to top"
-        >
-          <FaArrowUp />
-        </button>
-
         {/* YouTube - Red */}
         <a
           href="https://youtube.com"
@@ -69,11 +52,15 @@ function FloatingActions() {
         >
           <FaPhoneAlt />
         </a>
-      </div>
 
-      <button className="floating-menu__main-btn" onClick={toggleMenu} aria-label="Toggle contact menu">
-        {expanded ? <FaTimes /> : <FaPhoneAlt />}
-      </button>
+        <button
+          className={`floating-menu__btn floating-menu__btn--top ${showTop ? 'visible' : ''}`}
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp />
+        </button>
+      </div>
     </div>
   );
 }
