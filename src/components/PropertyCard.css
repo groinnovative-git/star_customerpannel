@@ -166,11 +166,7 @@
 }
 
 .property-card__detail-item--loan {
-  color: #b45309;
-}
-
-.property-card__detail-item--loan .property-card__detail-icon {
-  color: #D4AF37;
+  color: inherit;
 }
 
 .property-card__detail-divider {
