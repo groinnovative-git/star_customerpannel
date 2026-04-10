@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import CTAStrip from '../components/CTAStrip';
 import { heroBg, prop4 } from '../assets/index';
 import './Contact.css';
@@ -150,15 +151,15 @@ function Contact() {
             </p>
             <ul className="contact-info__list">
               <li>
-                <span className="contact-info__icon">📍</span>
+                <span className="contact-info__icon"><FaMapMarkerAlt /></span>
                 <span>123 Luxury Way, Suite 500, Coimbatore, TN 641039</span>
               </li>
               <li>
-                <span className="contact-info__icon">📞</span>
+                <span className="contact-info__icon"><FaPhoneAlt /></span>
                 <span>+91 12345 64893 10</span>
               </li>
               <li>
-                <span className="contact-info__icon">✉️</span>
+                <span className="contact-info__icon"><FaEnvelope /></span>
                 <span>abc@gmail.com</span>
               </li>
             </ul>
@@ -166,7 +167,7 @@ function Contact() {
 
           <div className="contact-info__right">
             <div className="contact-info__map-card">
-              <span className="contact-info__map-pin">📍</span>
+              <span className="contact-info__map-pin"><FaMapMarkerAlt /></span>
               <p className="contact-info__map-label">Star Properties & Realty</p>
               <p className="contact-info__map-address">Coimbatore, Tamil Nadu</p>
             </div>

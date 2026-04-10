@@ -13,7 +13,7 @@ import LeadPopup from './components/LeadPopup';
 
 function App() {
   const { pathname } = useLocation();
-  const is404 = !['/', '/about', '/services', '/services/details', '/contact'].includes(pathname);
+  const is404 = !['/', '/about', '/services', '/contact'].includes(pathname) && !pathname.startsWith('/services/details');
 
   return (
     <>

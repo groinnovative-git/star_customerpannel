@@ -770,6 +770,15 @@
   }
 }
 
+/* ========== ULTRA MOBILE SAFEGUARDS ========== */
+@media (max-width: 480px) {
+  .home-reviews__card,
+  .home-featured__card-wrap,
+  .home-quickmove__card {
+    min-width: 100%;
+  }
+}
+
 @media (max-width: 420px) {
   .home-svc-combined__grid {
     grid-template-columns: 1fr;

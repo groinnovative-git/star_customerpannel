@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaWhatsapp, FaArrowUp } from 'react-icons/fa';
+import { FaWhatsapp, FaArrowUp, FaPhoneAlt, FaYoutube, FaTimes } from 'react-icons/fa';
 import './FloatingActions.css';
 
 const WHATSAPP_NUMBER = '919345306018';
@@ -7,36 +7,72 @@ const WHATSAPP_MSG = encodeURIComponent("Hello, I'm interested in your propertie
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
 function FloatingActions() {
-  const [visible, setVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  // Show scroll to top visibility
+  const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300);
+    const onScroll = () => setShowTop(window.scrollY > 300);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setExpanded(false);
+  };
+
+  const toggleMenu = () => {
+    setExpanded(!expanded);
   };
 
   return (
-    <div className="floating-actions">
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="floating-actions__btn floating-actions__btn--whatsapp"
-        aria-label="Chat on WhatsApp"
-      >
-        <FaWhatsapp />
-      </a>
+    <div className={`floating-menu ${expanded ? 'floating-menu--expanded' : ''}`}>
+      <div className="floating-menu__actions">
+        {/* Scroll to Top - Orange/Purple */}
+        <button
+          className={`floating-menu__btn floating-menu__btn--top ${showTop ? 'visible' : ''}`}
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp />
+        </button>
 
-      <button
-        className={`floating-actions__btn floating-actions__btn--top ${visible ? 'floating-actions__btn--visible' : ''}`}
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-      >
-        <FaArrowUp />
+        {/* YouTube - Red */}
+        <a
+          href="https://youtube.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-menu__btn floating-menu__btn--youtube"
+          aria-label="YouTube"
+        >
+          <FaYoutube />
+        </a>
+
+        {/* WhatsApp - Green */}
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-menu__btn floating-menu__btn--whatsapp"
+          aria-label="WhatsApp"
+        >
+          <FaWhatsapp />
+        </a>
+
+        {/* Phone Call - Blue */}
+        <a
+          href="tel:+911234564893"
+          className="floating-menu__btn floating-menu__btn--phone"
+          aria-label="Phone Call"
+        >
+          <FaPhoneAlt />
+        </a>
+      </div>
+
+      <button className="floating-menu__main-btn" onClick={toggleMenu} aria-label="Toggle contact menu">
+        {expanded ? <FaTimes /> : <FaPhoneAlt />}
       </button>
     </div>
   );

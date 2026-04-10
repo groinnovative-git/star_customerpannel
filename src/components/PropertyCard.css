@@ -1,4 +1,4 @@
-﻿.property-card {
+.property-card {
   background: var(--white);
   border-radius: 14px;
   overflow: hidden;
@@ -169,7 +169,7 @@
 }
 
 .property-card__detail-item--loan .property-card__detail-icon {
-  color: #b45309;
+  color: #D4AF37;
 }
 
 .property-card__detail-divider {

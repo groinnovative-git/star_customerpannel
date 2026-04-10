@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { logo } from '../assets/index';
 import './Footer.css';
 
@@ -60,16 +61,16 @@ function Footer() {
             <h4 className="footer__heading">Contact Us</h4>
             <ul className="footer__list footer__contact-list">
               <li>
-                <span className="footer__contact-icon">📍</span>
-                123 Luxury Way, Suite 500, Coimbatore, TN 641039
+                <span className="footer__contact-icon"><FaMapMarkerAlt /></span>
+                <span>123 Luxury Way, Suite 500, Coimbatore, TN 641039</span>
               </li>
               <li>
-                <span className="footer__contact-icon">📞</span>
-                +91 12345 64893
+                <span className="footer__contact-icon"><FaPhoneAlt /></span>
+                <span>+91 12345 64893</span>
               </li>
               <li>
-                <span className="footer__contact-icon">✉️</span>
-                info@starproperties.com
+                <span className="footer__contact-icon"><FaEnvelope /></span>
+                <span>info@starproperties.com</span>
               </li>
             </ul>
           </div>

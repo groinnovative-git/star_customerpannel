@@ -163,6 +163,9 @@
 .contact-info__icon {
   flex-shrink: 0;
   font-size: 1.1rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
 }
 
 /* Map Card */
@@ -203,10 +206,12 @@
 
 .contact-info__map-pin {
   font-size: 3rem;
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
+  color: var(--gold);
 }
 
 .contact-info__map-label {

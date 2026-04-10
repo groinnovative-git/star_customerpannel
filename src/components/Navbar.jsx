@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaPhoneAlt } from 'react-icons/fa';
 import { logo } from '../assets/index';
 import './Navbar.css';
 
@@ -48,11 +47,6 @@ function Navbar() {
               </li>
             ))}
           </ul>
-
-          <Link to="/contact" className="navbar__contact-btn" onClick={handleLinkClick}>
-            <FaPhoneAlt style={{ marginRight: '8px', color: '#fff' }} />
-            Contact Us
-          </Link>
         </div>
 
         {/* Mobile hamburger */}

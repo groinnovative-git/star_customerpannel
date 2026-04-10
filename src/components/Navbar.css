@@ -86,27 +86,6 @@
   font-weight: 600;
 }
 
-/* ---- Contact Button ---- */
-.navbar__contact-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: #295254;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 10px 22px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.navbar__contact-btn:hover {
-  opacity: 0.85;
-}
-
 /* ---- Hamburger (mobile) ---- */
 .navbar__hamburger {
   display: none;
@@ -205,15 +184,6 @@
 
   .navbar__link::after {
     display: none;
-  }
-
-  .navbar__contact-btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    padding: 14px;
-    margin-top: 10px;
-    font-size: 1rem;
   }
 
   .navbar__logo-img {

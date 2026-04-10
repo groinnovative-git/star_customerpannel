@@ -92,7 +92,10 @@
 
 .footer__contact-icon {
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
 }
 
 /* ---- Bottom Bar ---- */

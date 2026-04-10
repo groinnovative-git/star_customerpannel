@@ -5,7 +5,7 @@ import {
   FaBed, FaBath, FaVectorSquare, FaCalendarAlt,
   FaCompass, FaChair, FaCheckCircle, FaDumbbell,
   FaParking, FaShieldAlt, FaBolt, FaVideo,
-  FaSwimmingPool, FaTree, FaCar, FaWhatsapp, FaArrowUp
+  FaSwimmingPool, FaTree, FaCar, FaPlane, FaShoppingBag
 } from 'react-icons/fa';
 import {
   MdElevator, MdLocalHospital, MdSchool, MdDirectionsBus
@@ -26,20 +26,6 @@ function PropertyDetail() {
 
   const images = property.images || [property.image];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Scroll to top visibility logic
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   // Carousel Logic — unchanged
   const nextImage = useCallback(() => {
@@ -96,9 +82,24 @@ function PropertyDetail() {
     { icon: <MdLocalHospital />, label: 'Hospital', distance: '800 m' },
     { icon: <HiAcademicCap />, label: 'College', distance: '1.9 km' },
     { icon: <MdSchool />, label: 'School', distance: '2.6 km' },
-    { icon: <IoTrainSharp />, label: 'Station', distance: '6.2 km' },
+    { icon: <FaShoppingBag />, label: 'Shopping Mall', distance: '3.5 km' },
+    { icon: <IoTrainSharp />, label: 'Railway Station', distance: '6.2 km' },
     { icon: <MdDirectionsBus />, label: 'Bus Stand', distance: '9.4 km' },
+    { icon: <FaPlane />, label: 'Airport', distance: '14.5 km' },
   ];
+
+  const renderPremiumPrice = (priceStr) => {
+    if (typeof priceStr === 'string' && priceStr.includes('₹')) {
+      const parts = priceStr.split('₹');
+      return (
+        <>
+          <span style={{ color: '#D4AF37', marginRight: '3px' }}>₹</span>
+          {parts[1]}
+        </>
+      );
+    }
+    return priceStr;
+  };
 
   // Get 3 thumbnails — show first 3 images (or fewer if not enough)
   const thumbnails = images.slice(0, 3);
@@ -122,16 +123,14 @@ function PropertyDetail() {
         <div className="detail-left" id="detail-left">
 
           {/* Virtual Video Tour Case */}
-          <div className="detail-card detail-video-section">
-            <h2 className="detail-card__title">Virtual Video Tour</h2>
-            <div className="detail-video-player">
+          <div className="detail-card detail-video-section" style={{ padding: '8px' }}>
+            <div className="detail-video-player" style={{ margin: 0, height: '360px' }}>
               <div className="detail-video-player__overlay">
-                <button className="detail-video-player__play-btn" aria-label="Play video tour">
+                <button className="detail-video-player__play-btn" style={{ background: '#D4AF37' }} aria-label="Play video tour">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </button>
-                <span className="detail-video-player__label">Watch Virtual Tour</span>
               </div>
             </div>
           </div>
@@ -148,7 +147,7 @@ function PropertyDetail() {
             </div>
             <span className="detail-quickinfo__divider">|</span>
             <div className="detail-quickinfo__item">
-              <span className="detail-quickinfo__value detail-quickinfo__value--price">{property.priceLabel}</span>
+              <span className="detail-quickinfo__value detail-quickinfo__value--price">{renderPremiumPrice(property.priceLabel)}</span>
             </div>
             <span className="detail-quickinfo__divider">|</span>
             <div className="detail-quickinfo__item">
@@ -261,6 +260,21 @@ function PropertyDetail() {
             </div>
           </div>
 
+          {/* Highlights & Settings Grid (Left Column) */}
+          <div className="detail-card">
+            <h2 className="detail-card__title">Property Highlights & Nearby</h2>
+            <div className="detail-nearby-grid">
+              {nearbyLocations.map((loc, idx) => (
+                <div key={idx} className="detail-nearby-grid__item">
+                  <div className="detail-nearby-grid__icon">{loc.icon}</div>
+                  <div className="detail-nearby-grid__info">
+                    <span className="detail-nearby-grid__label">{loc.label}</span>
+                    <span className="detail-nearby-grid__distance">{loc.distance}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
         </div>
 
@@ -275,26 +289,12 @@ function PropertyDetail() {
                 <FaMapMarkerAlt className="detail-sidebar-title-card__loc-icon" />
                 {property.location}, {property.city}
               </p>
-              <p className="detail-sidebar-title-card__price">{property.priceLabel}</p>
+              <p className="detail-sidebar-title-card__price">{renderPremiumPrice(property.priceLabel)}</p>
             </div>
 
             {/* Schedule Visit Form */}
             <ScheduleForm propertyName={property.name} />
 
-            {/* Nearby Locations Card */}
-            <div className="detail-nearby">
-              <h3 className="detail-nearby__title">Nearby Locations</h3>
-              <p className="detail-nearby__subtitle">Key Transport & Services</p>
-              <ul className="detail-nearby__list">
-                {nearbyLocations.map((loc, idx) => (
-                  <li key={idx} className="detail-nearby__item">
-                    <span className="detail-nearby__icon">{loc.icon}</span>
-                    <span className="detail-nearby__label">{loc.label}</span>
-                    <span className="detail-nearby__distance">{loc.distance}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -324,26 +324,6 @@ function PropertyDetail() {
 
       {/* CTA Strip */}
       <CTAStrip />
-
-      {/* Floating Action Icons */}
-      <div className="detail-floating-actions">
-        <a
-          href="https://wa.me/919999999999"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="floating-action-btn floating-action-btn--whatsapp"
-          aria-label="Contact on WhatsApp"
-        >
-          <FaWhatsapp />
-        </a>
-        <button
-          className={`floating-action-btn floating-action-btn--top ${showScrollTop ? 'floating-action-btn--visible' : ''}`}
-          onClick={scrollToTop}
-          aria-label="Scroll to top"
-        >
-          <FaArrowUp />
-        </button>
-      </div>
     </div>
   );
 }
